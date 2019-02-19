@@ -14,10 +14,13 @@ The purpose of this sample is to show a simple React implmenentation of the Micr
 	This can be fixed by going to the Library admin page and enabling the setting for 'Allow Library embedding in other sites' by going to:
 	http(s)://[WebServer]/MicroStrategyLibrary/admin/webserver
 
+	![Alt text](https://github.com/slippens/MicroStrategy/blob/master/JS%20Emebedding%20API/React%20Sample/webAdmin.png "Title")
+
 
 	A webserver restart is required after modifying this value.
 
-
+3) Install npm
+4) Run 'npm install' from project directory to install npm package dependencies for this project
 
 ### `npm start`
 
