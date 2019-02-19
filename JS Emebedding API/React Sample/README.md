@@ -2,7 +2,7 @@
 
 The purpose of this sample is to show a simple React implmenentation of the MicroStrategy javascript embedding API.
 
-![Alt text](/results.png?raw=true "Title")
+![Alt text](../results.png?raw=true "Title")
 
 ## Setup
 
