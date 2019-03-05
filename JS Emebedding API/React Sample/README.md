@@ -6,10 +6,10 @@ The purpose of this sample is to show a simple React implementation of the Micro
 
 ## Setup
 0) Download this repository
-1) Edit the src/config.json file within this sample and populate file with your environment variables
+1) Edit the 'src/config.json' file within this sample and populate file with your environment variables
 2) Set content security policies for cross-domain communication
 	By default, MicroStrategy will block other domains from embedding content. You will see the below error in your error log: 
-	Refused to display 'https://[HOST]/MicroStrategyLibrary/auth/ui/embeddedLogin.jsp' in a frame because an ancestor violates the following Content Security Policy directive: "frame-ancestors 'self'".
+	'Refused to display 'https://[HOST]/MicroStrategyLibrary/auth/ui/embeddedLogin.jsp' in a frame because an ancestor violates the following Content Security Policy directive: "frame-ancestors 'self'".'
 
 	This can be fixed by going to the Library admin page and enabling the setting for 'Allow Library embedding in other sites' by going to:
 	http(s)://[WebServer]/MicroStrategyLibrary/admin/webserver
@@ -21,14 +21,11 @@ The purpose of this sample is to show a simple React implementation of the Micro
 
 	A webserver restart is required after modifying this value.
 
-3) Ensure you have npm installed. You can do this with the command. If not, install npm
-`npm -v`
+3) Ensure you have npm installed. You can do this with the command `npm -v`. If not, install npm
 
-4) Navigate to the sample directory and run the install command to install npm package dependencies for this project
-'npm install'
+4) Navigate to the sample directory and run the install command to install npm package dependencies for this project 'npm install'
 
-5) Start npm to launch sample
-`npm start`
+5) Start npm to launch sample `npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
