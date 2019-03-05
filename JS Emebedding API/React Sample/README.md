@@ -2,7 +2,7 @@
 
 The purpose of this sample is to show a simple React implmenentation of the MicroStrategy javascript embedding API.
 
-![Alt text](https://github.com/slippens/MicroStrategy/blob/master/JS%20Emebedding%20API/React%20Sample/results.png "Title")
+<img src="https://github.com/slippens/MicroStrategy/blob/master/JS%20Emebedding%20API/React%20Sample/results.png"  width="300"/>
 
 ## Setup
 
