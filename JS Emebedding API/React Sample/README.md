@@ -26,11 +26,9 @@ The purpose of this sample is to show a simple React implementation of the Micro
 4) Navigate to the sample directory and run the install command to install npm package dependencies for this project `npm install`
 
 5) Start npm to launch sample `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+	Runs the app in the development mode.<br>
+	Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+	The page will reload if you make edits.<br>
+	You will also see any lint errors in the console.
 
 
