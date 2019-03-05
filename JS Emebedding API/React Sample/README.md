@@ -14,9 +14,9 @@ The purpose of this sample is to show a simple React implmenentation of the Micr
 	This can be fixed by going to the Library admin page and enabling the setting for 'Allow Library embedding in other sites' by going to:
 	http(s)://[WebServer]/MicroStrategyLibrary/admin/webserver
 
-	![](https://github.com/slippens/MicroStrategy/blob/master/JS%20Emebedding%20API/React%20Sample/webAdmin.png | width=100)
+
 	
-	<img src="https://github.com/slippens/MicroStrategy/blob/master/JS%20Emebedding%20API/React%20Sample/webAdmin.png"  width="200" />
+	<img src="https://github.com/slippens/MicroStrategy/blob/master/JS%20Emebedding%20API/React%20Sample/webAdmin.png"  width="500" />
 
 
 	A webserver restart is required after modifying this value.
