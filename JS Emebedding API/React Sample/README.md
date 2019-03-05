@@ -1,6 +1,6 @@
 ## Purpose
 
-The purpose of this sample is to show a simple React implmenentation of the MicroStrategy javascript embedding API.
+The purpose of this sample is to show a simple React implementation of the MicroStrategy javascript embedding API.
 
 <img src="https://github.com/slippens/MicroStrategy/blob/master/JS%20Emebedding%20API/React%20Sample/results.png"  width="300"/>
 
