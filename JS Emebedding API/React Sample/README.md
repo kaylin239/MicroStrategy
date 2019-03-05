@@ -15,6 +15,8 @@ The purpose of this sample is to show a simple React implmenentation of the Micr
 	http(s)://[WebServer]/MicroStrategyLibrary/admin/webserver
 
 	![](https://github.com/slippens/MicroStrategy/blob/master/JS%20Emebedding%20API/React%20Sample/webAdmin.png | width=100)
+	
+	<img src="https://github.com/slippens/MicroStrategy/blob/master/JS%20Emebedding%20API/React%20Sample/webAdmin.png"  width="200" />
 
 
 	A webserver restart is required after modifying this value.
