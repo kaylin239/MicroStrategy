@@ -7,7 +7,7 @@ The purpose of this sample is to show a simple React implementation of the Micro
 ## Setup
 0) Download this repository
 1) Edit the `src/config.json` file within this sample and populate file with your environment variables
-2) Set content security policies for cross-domain communication
+2) Set content security policies for cross-domain communication <br>
 	By default, MicroStrategy will block other domains from embedding content. You will see the below error in your error log: 
 	**Refused to display 'https://[HOST]/MicroStrategyLibrary/auth/ui/embeddedLogin.jsp' in a frame because an ancestor violates the following Content Security Policy directive: "frame-ancestors 'self'".**
 
