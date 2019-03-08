@@ -55,27 +55,27 @@ Click `Save Model` and then `Build Model`. This process may take a few minutes t
 5. Fill out a name and role for the skill and click ‘create function’ on the bottom of the screen
       <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/9.png"  width="600"/>
 
-Under the designer tab, add the trigger ‘Alexa Skills Kit’. In the window below, check ‘disable’ on Skill ID verification. This is a security implementation to ensure only specific skills can leverage this lambda function, for demo purposes we will not perform a check, but in production you would want to perform this validation.  
+6. Under the designer tab, add the trigger ‘Alexa Skills Kit’. In the window below, check ‘disable’ on Skill ID verification. (This is a security implementation to ensure only specific skills can leverage this lambda function, for demo purposes we will not perform a check, but in production you would want to perform this validation.) 
+      <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/10.png"  width="600"/>
+      
+7. Click `Save` in the top right and reload the window. (The code editor seems to disappear when triggers are added, refreshing the window will bring it back).
 
-Click ‘Save’ in the top right and reload the window. (The code editor seems to disappear when triggers are added, refreshing the window will bring it back).
+8. Replace the entire code contents of the `index.js` with the provided **index.js** contained within this repository.
 
-Replace the entire code contents of the ‘index.js’ with the provided index.js contained within this repository.
+9. Modify the Config object defined on line 5 with information from your own MicroStrategy environment. (You will need to use Desktop or the REST API to obtain your project ID, the other IDs can be obtained through web).
+       <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/11.png"  width="600"/>
 
-Modify the Config object defined on line 5 with information from your own MicroStrategy environment. (You will need to use Desktop or the REST API to obtain your project ID, the other IDs can be obtained through web).
+10. Copy the ARN for the lambda function shown in the top right corner
+        <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/12.png"  width="600"/>
+
+### Add Lambda endpoint to Alexa Skill
+
+1. Go back to the Alexa Skill, click on the `endpoint` section on the left, and provide your ARN as the default region value.
+        <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/13.png"  width="600"/>
  
 
-
-
-
-Copy the ARN for the lambda function shown in the top right corner
- 
-
-Go back to the Alexa Skill, click on the ‘endpoint’ section on the left, and provide your ARN as the default region value.
-
- 
-
-Click ‘Save Endpoints’ on the top of the screen
-
+2. Click `Save Endpoints` on the top of the screen
+        <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/14.png"  width="600"/>
 
 Skill Testing
 
