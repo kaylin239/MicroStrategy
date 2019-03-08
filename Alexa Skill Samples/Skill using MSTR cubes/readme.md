@@ -91,4 +91,5 @@ Click `Save Model` and then `Build Model`. This process may take a few minutes t
 
 You can try various combinations of subcategory elements and years present in the sample dataset.
 
-
+### additional info
+You can test this on a physical alexa device by simply logging into the device with the amazon account that developed the skill (as long as you set the skill as in development). 
