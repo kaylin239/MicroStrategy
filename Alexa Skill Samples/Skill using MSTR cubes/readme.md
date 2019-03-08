@@ -43,17 +43,17 @@ The purpose of this sample is to show how to create an Alexa Skill that is able 
       <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/8.png"  width="600"/>
 
 Click `Save Model` and then `Build Model`. This process may take a few minutes to complete. A popup will appear when finished.
-      <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/9.png"  width="600"/>
+
 ### Create the Lambda Endpoint
 
-Go to https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions
-Login to your account
+1. Go to https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions
+2. Login to your account
 
-Click ‘Create function’ in the top right
-Select the option for ‘blueprints’ and select the fact or trivia nodeJS template. We will not use the code from this template, but it imports a number of frameworks we will need for our own purposes.
+3. Click `Create function` in the top right
+4. Select the option for ‘blueprints’ and select the fact or trivia nodeJS template. We will not use the code from this template, but it imports a number of frameworks we will need for our own purposes.
 
-Fill out a name and role for the skill and click ‘create function’ on the bottom of the screen
-  
+5. Fill out a name and role for the skill and click ‘create function’ on the bottom of the screen
+      <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/9.png"  width="600"/>
 
 Under the designer tab, add the trigger ‘Alexa Skills Kit’. In the window below, check ‘disable’ on Skill ID verification. This is a security implementation to ensure only specific skills can leverage this lambda function, for demo purposes we will not perform a check, but in production you would want to perform this validation.  
 
