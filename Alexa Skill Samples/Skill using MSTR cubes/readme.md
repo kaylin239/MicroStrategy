@@ -5,19 +5,22 @@ The purpose of this sample is to show how to create an Alexa Skill that is able 
 <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/questions.png"  width="300"/>
 
 ## Setup
-Prepare the data within MicroStrategy
 
-Import the included dataset.xlsx file as a cube
+### Prepare the data within MicroStrategy
 
-In MicroStrategy Web -> Create > Add External Data
+1. Import the included dataset.xlsx file as a cube
+
+In MicroStrategy Web `Create > Add External Data`
   
-
-Click finish and save cube.
-
-Right click on the created cube and go to properties to get the cube ID
+   <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/1.png"  width="300"/>
   
+2. Click finish and save cube.
+  <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/2.png"  width="300"/>
+  
+3. Right click on the created cube and go to properties to get the cube ID
+    <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/3.png"  width="300"/>
 
-Create the Alexa Skill
+### Create the Alexa Skill
 
 Go to https://developer.amazon.com/alexa
 Click on ‘Skill Builders’ and click ‘Start a skill’
