@@ -35,19 +35,16 @@ The purpose of this sample is to show how to create an Alexa Skill that is able 
      <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/6.png"  width="600"/>
      
 
-5. For the template, select ‘Fact Skill’. We will delete all the pre-generated code, but this template already includes a number of additional libraries we will take use of for our project.
+5. For the template, select `Fact Skill`. We will delete all the pre-generated code, but this template already includes a number of additional libraries we will take use of for our project.
      <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/7.png"  width="600"/>
  
 
-
- 
-
-6. On the left panel, click ‘JSON Editor’ and paste in the contents from the skill.json file included in this repository.
+6. On the left panel, click `JSON Editor` and paste in the contents from the **skill.json** file included in this repository.
       <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/8.png"  width="600"/>
 
-Click ‘Save Model’ and then ‘Build Model’. This process may take a few minutes to complete. A popup will appear when finished.
-
-Create the Lambda Endpoint
+Click `Save Model` and then `Build Model`. This process may take a few minutes to complete. A popup will appear when finished.
+      <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/9.png"  width="600"/>
+### Create the Lambda Endpoint
 
 Go to https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions
 Login to your account
