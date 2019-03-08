@@ -1,35 +1,91 @@
 ## Purpose
 
-The purpose of this sample is to show a simple React implementation of the MicroStrategy javascript embedding API.
+The purpose of this sample is to show how to create an Alexa Skill that is able to ask questions against a dataset contained within MicroStrategy. This particular sample utlizes in-memory cube datasets, but it can be easily modified to pull against report datasets as well. 
 
-<img src="https://github.com/slippens/MicroStrategy/blob/master/JS%20Emebedding%20API/React%20Sample/results.png"  width="300"/>
+<img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/questions.png"  width="300"/>
 
 ## Setup
-0) Download this repository
-1) Edit the `src/config.json` file within this sample and populate file with your environment variables
-2) Set content security policies for cross-domain communication <br>
-	By default, MicroStrategy will block other domains from embedding content. You will see the below error in your error log: 
-	**Refused to display 'https://[HOST]/MicroStrategyLibrary/auth/ui/embeddedLogin.jsp' in a frame because an ancestor violates the following Content Security Policy directive: "frame-ancestors 'self'".**
+Prepare the data within MicroStrategy
 
-	This can be fixed by going to the Library admin page and enabling the setting for #Allow Library embedding in other sites# by going to:
-	`http(s)://[WebServer]/MicroStrategyLibrary/admin/webserver`
+Import the included dataset.xlsx file as a cube
+
+In MicroStrategy Web -> Create > Add External Data
+  
+
+Click finish and save cube.
+
+Right click on the created cube and go to properties to get the cube ID
+  
+
+Create the Alexa Skill
+
+Go to https://developer.amazon.com/alexa
+Click on ‘Skill Builders’ and click ‘Start a skill’
+ 
+
+Click ‘Create Skill’ in the top right corner
+
+Select ‘Custom Skill’, fill out a skill name, and click ‘Create Skill’ in the top right corner.
+
+ 
+
+For the template, select ‘Fact Skill’. We will delete all the pre-generated code, but this template already includes a number of additional libraries we will take use of for our project.
+
+ 
+
+On the left panel, click ‘JSON Editor’ and paste in the contents from the skill.json file included in this repository.
+ 
+
+Click ‘Save Model’ and then ‘Build Model’. This process may take a few minutes to complete. A popup will appear when finished.
+
+Create the Lambda Endpoint
+
+Go to https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions
+Login to your account
+
+Click ‘Create function’ in the top right
+Select the option for ‘blueprints’ and select the fact or trivia nodeJS template. We will not use the code from this template, but it imports a number of frameworks we will need for our own purposes.
+
+Fill out a name and role for the skill and click ‘create function’ on the bottom of the screen
+  
+
+Under the designer tab, add the trigger ‘Alexa Skills Kit’. In the window below, check ‘disable’ on Skill ID verification. This is a security implementation to ensure only specific skills can leverage this lambda function, for demo purposes we will not perform a check, but in production you would want to perform this validation.  
+
+Click ‘Save’ in the top right and reload the window. (The code editor seems to disappear when triggers are added, refreshing the window will bring it back).
+
+Replace the entire code contents of the ‘index.js’ with the provided index.js contained within this repository.
+
+Modify the Config object defined on line 5 with information from your own MicroStrategy environment. (You will need to use Desktop or the REST API to obtain your project ID, the other IDs can be obtained through web).
+ 
 
 
-	
-	<img src="https://github.com/slippens/MicroStrategy/blob/master/JS%20Emebedding%20API/React%20Sample/webAdmin.png"  width="500" />
 
 
-	A webserver restart is required after modifying this value.
+Copy the ARN for the lambda function shown in the top right corner
+ 
 
-3) Ensure you have npm installed. You can do this with the command `npm -v`. If not, install npm
+Go back to the Alexa Skill, click on the ‘endpoint’ section on the left, and provide your ARN as the default region value.
 
-4) Navigate to the sample directory and run the install command to install npm package dependencies for this project `npm install`
+ 
 
-5) Start npm to launch sample `npm start`
+Click ‘Save Endpoints’ on the top of the screen
 
-	Runs the app in the development mode.<br>
-	Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-	The page will reload if you make edits.<br>
-	You will also see any lint errors in the console.
+
+Skill Testing
+
+On the top menu, click ‘test’ and set skill testing enabled for ‘Development’.
+
+ 
+
+The launch request was hardcoded to respond ‘hello’. Try typing ‘Launch demo skill’ to see if everything was setup properly
+ 
+
+Next, let’s try asking a question on the data. 
+‘Ask demo skill what is my profit for computers in 2016’
+
+ 
+
+
+You can try various combinations of subcategory elements and years present in the sample dataset.
 
 
