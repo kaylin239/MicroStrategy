@@ -15,9 +15,11 @@ In MicroStrategy Web `Create > Add External Data`
    <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/1.png"  width="150"/>
   
 2. Click finish and save cube.
+
   <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/2.png"  width="500"/>
   
 3. Right click on the created cube and go to properties to get the cube ID
+
     <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/3.png"  width="300"/>
 
 ### Create the Alexa Skill
