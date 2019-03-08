@@ -31,10 +31,10 @@ The purpose of this sample is to show how to create an Alexa Skill that is able 
      <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/5.png"  width="600"/>
 
 3. Click `Create Skill` in the top right corner
-
+4. Select `Custom Skill`, fill out a skill name, and click `Create Skill` in the top right corner.
      <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/6.png"  width="600"/>
      
-4. Select `Custom Skill`, fill out a skill name, and click `Create Skill` in the top right corner.
+
 5. For the template, select ‘Fact Skill’. We will delete all the pre-generated code, but this template already includes a number of additional libraries we will take use of for our project.
      <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/7.png"  width="600"/>
  
