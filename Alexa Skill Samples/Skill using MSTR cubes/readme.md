@@ -81,11 +81,12 @@ Click `Save Model` and then `Build Model`. This process may take a few minutes t
         <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/15.png"  width="600"/>
  
 2. The launch request was hardcoded to respond ‘hello’. Try typing `Launch demo skill` to see if everything was setup properly
-         <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/16.png"  width="600"/>
+        
+<img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/16.png"  width="300"/>
 
 3. Next, let’s try asking a question on the data. 
 `Ask demo skill what is my profit for computers in 2016`
-         <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/17.png"  width="600"/>
+         <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/17.png"  width="300"/>
  
 
 You can try various combinations of subcategory elements and years present in the sample dataset.
