@@ -10,7 +10,7 @@ The purpose of this sample is to show how to create an Alexa Skill that is able 
 
 1. Import the included dataset.xlsx file as a cube
 
-⋅⋅⋅ In MicroStrategy Web `Create > Add External Data`
+   In MicroStrategy Web `Create > Add External Data`
   
    <img src="https://github.com/slippens/MicroStrategy/blob/master/Alexa%20Skill%20Samples/Skill%20using%20MSTR%20cubes/readme%20images/1.png"  width="150"/>
   
