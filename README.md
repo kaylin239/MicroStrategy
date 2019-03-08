@@ -10,4 +10,4 @@ https://developer.microstrategy.com
 
 ## Updates 
 3/1 - First JS Embedding API sample uploaded (React Sample) <br>
-3/8 - Firest Alexa Sample uploaded
+3/8 - First Alexa Sample uploaded
