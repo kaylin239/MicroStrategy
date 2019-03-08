@@ -8,6 +8,6 @@ Documentation for the various SDKs and APIs MicroStrategy offers can be found at
 https://developer.microstrategy.com
 
 
-
-**Update 3/1 - First JS Embedding API sample uploaded (React Sample)**
-**Update 3/8 - Firest Alexa Sample uploaded**
+## Updates 
+3/1 - First JS Embedding API sample uploaded (React Sample)
+3/8 - Firest Alexa Sample uploaded
