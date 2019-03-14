@@ -19,7 +19,7 @@ The purpose of this sample is to show a simple React implementation of the Micro
 }`
 
 2. Import the MicroStrategy JS Embedding API <br>
-	Open the file `public/index.html` and modify the script tag to point to the embeddingLib.js hosted on your MicroStrategy Library deployment
+	Open the file `public/index.html` and modify the script tag to point to the embeddingLib.js hosted on your MicroStrategy Library deployment <br>
 	`<script src="https:/WEBSERVER/MicroStrategyLibrary/javascript/embeddinglib.js"></script>`
 	
 3. Set content security policies for cross-domain communication <br>
