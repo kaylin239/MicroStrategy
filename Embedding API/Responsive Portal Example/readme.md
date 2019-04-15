@@ -17,13 +17,13 @@ The purpose of this sample is to show how to create fully responsive portal that
 
 1. Download the files in this repository and deploy them to your webserver. If using Tomcat, you can create a new folder called `EmbeddingSample` under the `webapps` directory and place all the files in this new folder.
 
-<img src="https://github.com/slippens/MicroStrategy/blob/master/Embedding%20API/Responsive%20Portal%20Example/readmeContent/e3.png"  width="500"/>
+<img src="https://github.com/slippens/MicroStrategy/blob/master/Embedding%20API/Responsive%20Portal%20Example/readmeContent/e3.png"  width="800"/>
 
 ### Deploy sample MSTR File
 
 1. Go to MicroStrategy Web and upload the sample dossier (.mstr file) by clicking on Create > Upload MSTR File
 
-<img src="https://github.com/slippens/MicroStrategy/blob/master/Embedding%20API/Responsive%20Portal%20Example/readmeContent/e4.png"  width="500"/>
+<img src="https://github.com/slippens/MicroStrategy/blob/master/Embedding%20API/Responsive%20Portal%20Example/readmeContent/e4.png"  width="300"/>
 
 Note - You can also use your own created dossier, but please note the filtering components of this sample were built to leverage multi-select-enabled attribute element selectors. 
 
@@ -31,7 +31,7 @@ Note - You can also use your own created dossier, but please note the filtering 
 
 1. Open the `config.js` file and set the various parameters according to your environment
 
-<img src="https://github.com/slippens/MicroStrategy/blob/master/Embedding%20API/Responsive%20Portal%20Example/readmeContent/e5.png"  width="500"/>
+<img src="https://github.com/slippens/MicroStrategy/blob/master/Embedding%20API/Responsive%20Portal%20Example/readmeContent/e5.png"  width="800"/>
 
 The projectID can be obtained by right clicking on the desired project in Developer.
 The DossierID can be obtained by right click > properties on the desired dossier in Web or Developer
