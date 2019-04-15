@@ -1,0 +1,443 @@
+<!doctype html>
+<title>Stephen's Embedding Sample</title>
+
+
+<!-- load dependencies based on config files -->
+<script src="./config.js"></script>
+
+
+<style type="text/css">
+
+  html,body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+#flexcanvas{
+  width: 100%;
+  height: 100%;
+  min-height: 530px;
+}
+
+.rowParent, .columnParent{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-content: stretch;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.columnParent{
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.flexChild{
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+  height:100%;
+}
+
+
+#filter{
+ -webkit-box-flex: 0;
+ -webkit-flex: 0 0 auto;
+ -ms-flex: 0 0 auto;
+ flex: 0 0 auto; height: 60px;
+}
+
+#flexibleContent{
+      min-height: 100px;
+      background: rgb(238,243,247);
+}
+
+
+#otherPortalContent{
+ -webkit-box-flex: 0;
+ -webkit-flex: 0 0 auto;
+ -ms-flex: 0 0 auto;
+ flex: 0 0 auto; height: 130px;
+  background: rgb(238,243,247);
+}
+
+
+#details{
+ -webkit-box-flex: 0;
+ -webkit-flex: 0 0 auto;
+ -ms-flex: 0 0 auto;
+ flex: 0 0 auto; width: 200px;
+  background: rgb(238,243,247);
+}
+
+
+#nav{
+ -webkit-box-flex: 0;
+ -webkit-flex: 0 0 auto;
+ -ms-flex: 0 0 auto;
+ flex: 0 0 auto; width: 150px;
+ background: rgb(238,243,247);
+}
+
+
+#footer{
+ -webkit-box-flex: 0;
+ -webkit-flex: 0 0 auto;
+ -ms-flex: 0 0 auto;
+ flex: 0 0 auto; height: 5px;
+ background: rgb(62,103,139);
+}
+
+
+#header{
+ -webkit-box-flex: 0;
+ -webkit-flex: 0 0 auto;
+ -ms-flex: 0 0 auto;
+ flex: 0 0 auto; height: 50px;
+ background: rgb(62,103,139);
+}
+
+#header, #footer, #details, #nav, #otherPortalContent, #filter, #flexibleContent {
+  padding: 0.4em;
+}
+#sectionHeader{
+  text-align: center;
+  font: normal normal normal FontAwesome;
+  background-color: rgb(109,175,232);
+  color: white;
+}
+
+#detailsDescriptor{
+  text-align: center;
+  background-color: rgb(28,53,74);
+  color: white;
+}
+#detailsContainer{
+  
+  font: normal normal normal FontAwesome;
+  overflow: scroll;
+}
+
+#filterContainer{
+  font: normal normal normal FontAwesome;
+}
+
+.childContainer{
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 98%;
+
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li {
+  text-align: center;
+  font: normal normal normal 14px/1 FontAwesome;
+  color:rgb(0, 117, 161);;
+  border-bottom: 1px solid #fb7413 !important;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+</style>
+
+<!-- build DOM -->
+<body>
+<div id="flexcanvas">
+  <div id="container" class="flexChild columnParent">  
+  <div id="header" class="flexChild">
+  	<a href="https://github.com/slippens/MicroStrategy"><img src="./images/StephenLogo.png" alt="StephenLogo"></a>
+  </div>
+    <div id="columnChild56058" class="flexChild rowParent">
+    <div id="nav" class="flexChild">
+    	<div id="" class="childContainer">
+        <div id="sectionHeader">Portal Navigation</div>
+        <div id="navContainer"> </div>
+      </div>
+    </div>
+    <div id="rowChild13420" class="flexChild columnParent">
+      <div id="otherPortalContent" class="flexChild">
+        <div id="" class="childContainer">
+         
+            <img style='height: 100%; width: 100%; object-fit: cover' src="./images/stockPhoto.jpg" alt="GenericPhoto">
+        </div>
+      </div>
+      <div id="filter" class="flexChild">
+        <div id="" class="childContainer">
+          <div id="sectionHeader">Portal Filter Panel</div>
+          <div id="filterContainer"> Show me values for: 
+      </div>
+        </div>
+      </div>
+        <div id="flexibleContent" class="flexChild">
+        </div>
+      </div>
+      <div id="details" class="flexChild">
+        <div id="" class="childContainer">
+          <div id="sectionHeader">MSTR API Details</div>
+          <div id="detailsDescriptor"></div>
+          <div id="detailsContainer"> </div>
+        </div>
+      </div>
+    </div>
+     <div id="footer" class="flexChild"></div>
+    </div>
+  </div>
+</body>
+
+<!-- Scripts-->
+
+<script type="text/javascript"> 
+    var JSLink = config.embeddingLibPath;
+    var JSElement = document.createElement('script');
+    JSElement.src = JSLink;
+    JSElement.onload = OnceLoaded;
+    document.getElementsByTagName('head')[0].appendChild(JSElement);
+
+    function OnceLoaded() {
+      
+      //Form PostData for login REST request
+      var postData = {};
+      postData.username = config.username;
+      postData.password = config.password;
+      postData.loginMode = 1;
+
+
+      var projectUrl = config.baseRestURL + '/app/' + config.projectID;
+      var dossierUrl = projectUrl + '/' + config.dossierID;
+      console.log("DossierURL: " + dossierUrl);
+
+      //populate div with Dossier:
+      microstrategy.dossier.create({
+          placeholder: document.getElementById("flexibleContent"),
+          url: dossierUrl,
+          enableCustomAuthentication: true,
+          enableResponsive: true,
+          customAuthenticationType: microstrategy.dossier.CustomAuthenticationType.AUTH_TOKEN,
+          getLoginToken: function() {
+              return getXHRRequestPromise(config.baseRestURL + '/api/auth/login', postData, 'POST', 'application/json', 'x-mstr-authToken').then(function(authToken) {
+                  return authToken;
+              })
+          }
+      }).then(function(dossier) {
+          //any code you want to run after dossier loads
+
+          //Function created to render UI for page navigation based on chapters/pages on loaded dossier
+          createChapterPageNav(dossier, document.getElementById("navContainer"));
+
+          //Function to render filter panel UI based on filters on loaded dossier
+          renderFilterPanel(dossier, document.getElementById("filterContainer"));
+
+          //Applying the various event handlers available:
+          dossier.registerEventHandler("onGraphicsSelected",function(e){
+            document.getElementById("detailsDescriptor").innerHTML = "onGraphicsSelected()"
+            printContent(e, document.getElementById("detailsContainer"));
+          });
+
+          dossier.registerEventHandler("onPageSwitched",function(e){
+            document.getElementById("detailsDescriptor").innerHTML = "onPageSwitched()"
+            printContent(e, document.getElementById("detailsContainer"));
+          });
+
+      });
+   
+      function getXHRRequestPromise(url, body, method, contentType, desiredHeader) {
+          return new Promise(function(resolve, reject) {
+              var xhr = new XMLHttpRequest();
+              xhr.open(method, url);
+              xhr.withCredentials = true;
+              xhr.setRequestHeader('Content-Type', 'application/json');
+              xhr.setRequestHeader("Accept", "application/json");
+              xhr.send(JSON.stringify(body));
+
+              xhr.onreadystatechange = function() {
+                  if (xhr.readyState === 2) {
+                      resolve(xhr.getResponseHeader(desiredHeader));
+                  } else {
+                      reject({
+                          status: this.status,
+                          statusText: xhr.statusText
+                      });
+                  }
+              };
+          });
+      };
+
+
+    function renderFilterPanel(dossier, div){
+      dossier.getFilterList().then(function(filterList) {
+
+          //print the results of getFilterList to the details div:
+          document.getElementById("detailsDescriptor").innerHTML = "GetFilterList()"
+          printContent(filterList, document.getElementById("detailsContainer"));
+
+          //for each filter:
+          for (var i = 0; i < filterList.length; i++){
+
+              var filter = filterList[i];
+
+              //this sample was built for attirbute element selectors:
+              if(filter.filterType == "attributeSelector"){
+
+
+                //create select object for each filter:
+                var select = document.createElement("select"); 
+                select.id = filter.filterKey;
+                select.name = filter.filterName;
+
+                var option = document.createElement("option"); 
+                option.value="All"; 
+                option.selected="All";
+                option.innerHTML= "All";
+                select.options.add(option);
+
+                div.appendChild(select);
+
+
+                //Add on change function
+
+                select.onchange = function(){
+                  if(this.value == "All"){
+                    var filterDataObj = {};
+                    var filterInfoObj = {};
+                    filterInfoObj.key = this.id;
+                    filterDataObj.selections = null;
+                    filterDataObj.filterInfo = filterInfoObj;
+                    dossier.filterSelectAllAttributes(filterDataObj);
+
+                    document.getElementById("detailsDescriptor").innerHTML = "filterSelectAllAttributes()"
+                    printContent(filterDataObj, document.getElementById("detailsContainer"));
+
+                  }
+                  else{
+                    var filterDataObj = {};
+                    var filterInfoObj = {};
+                    filterInfoObj.key = this.id;
+                    var selectionObj = {};
+                    selectionObj.value = this.value;
+                    filterDataObj.selections = [selectionObj];
+                    filterDataObj.filterInfo = filterInfoObj;
+                    dossier.filterSelectMultiAttributes(filterDataObj);
+
+                    document.getElementById("detailsDescriptor").innerHTML = "filterSelectMultiAttributes()"
+                    printContent(filterDataObj, document.getElementById("detailsContainer"));
+                  }
+                }
+
+                //render the options for each filter:
+                 for (var j = 0; j < filter.filterDetail.items.length; j++){
+                  var item = filter.filterDetail.items[j];
+                  var option = document.createElement("option"); 
+                  option.value=item.value; 
+                  option.selected=item.selected;
+                  option.innerHTML= item.name;
+                  select.options.add(option);
+                }
+              }
+          }
+          });
+    }
+
+    function printContent(content, div){
+        div.innerHTML = JSON.stringify(content,null, 2);
+    }
+    function showGetTableContent(dossier, div){
+      div.innerHTML = JSON.stringify(dossier.getTableContent(),null, 2);
+    }
+
+    //Creates the chapter/page navigation UI
+    function createChapterPageNav(dossier, div) {
+
+      var navData = dossier.getTableContent();
+      var pill = document.createElement("ul");
+      pill.className = "nav nav-pills nav-stacked";
+     
+      for (var i = 0; i < navData.chapters.length; i++) {
+
+        var chapter = navData.chapters[i];
+
+
+        for (var j = 0; j < chapter.pages.length; j++) {
+          var page = chapter.pages[j];
+          var newChild = null;
+          var newHREF = null;
+
+          newChild = document.createElement("li");
+          newHREF = document.createElement("a");
+          newHREF.href = "#";
+          newHREF.style.textAlign = "left";
+          newHREF.innerHTML =  page.name;
+          newHREF.id = page.nodeKey;
+          console.log(newHREF.id);
+          newHREF.onclick = function() {
+            console.log("trying to navigate to: " + this.id)
+            dossier.navigateToPage(dossier.getPageByNodeKey(this.id))
+          };
+          newChild.appendChild(newHREF);
+          pill.appendChild(newChild);
+
+
+        }
+      }
+
+      div.appendChild(pill);
+
+    }
+    }
+</script>
+
+	
+  
+
+  
+</script>
