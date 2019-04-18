@@ -41,6 +41,7 @@ The DossierID can be obtained by right click > properties on the desired dossier
 1. Go to the MicroStrategyLibrary admin page (`https://[webserver]/MicroStrategyLibrary/admin/webserver`) 
 2. Under `Security Settings` check either `All` or `Specific` for the option to allow Library embedding in other sites. If you choose Specific you will need to explicity define the domains that have permission to embed the content.
 <img src="https://github.com/slippens/MicroStrategy/blob/master/Embedding%20API/Responsive%20Portal%20Example/readmeContent/e6.png"  width="800"/>
+
 ### Run Sample
 If deployed to a webserver (like Tomcat), and you used the naming conventions in the sample instructions, the sample can be accessed at the URL:
 `http(s)://[Webserver]/EmbeddingSample/index.html`
