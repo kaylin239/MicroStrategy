@@ -21,7 +21,7 @@ The purpose of this sample is to show how to create fully responsive portal that
 
 ### Deploy sample MSTR File
 
-1. Go to MicroStrategy Web and upload the sample dossier (.mstr file) by clicking on Create > Upload MSTR File
+1. Go to MicroStrategy Web and upload the sample dossier (`SampleDossier.mstr` file) by clicking on Create > Upload MSTR File
 
 <img src="https://github.com/slippens/MicroStrategy/blob/master/Embedding%20API/Responsive%20Portal%20Example/readmeContent/e4.png"  width="300"/>
 
@@ -38,6 +38,7 @@ The DossierID can be obtained by right click > properties on the desired dossier
 
 ### Configure CORS settings (If hosting on another server other than the MicroStrategy Web server)
 
+1. Go to the MicroStrategyLibrary admin page (`https://[webserver]/MicroStrategyLibrary/admin/webserver`) 
 
 ### Run Sample
 
