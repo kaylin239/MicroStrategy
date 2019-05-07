@@ -33,7 +33,7 @@ The purpose of this sample is to show a simple React implementation of the Micro
 
 
 	
-	<img src="https://github.com/slippens/MicroStrategy/blob/master/Embedding%20API/React%20Sample/readmeContent/webAdmin.png"  width="500" />
+	<img src="./readmeContent/webAdmin.png"  width="500" />
 
 
 	A webserver restart is required after modifying this value.
