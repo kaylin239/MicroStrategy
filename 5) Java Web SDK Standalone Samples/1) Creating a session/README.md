@@ -7,10 +7,14 @@ This is a very simple sample to show how to instantiate a `WebIServerSession` ob
 2) Take note of the required dependencies mentioned below this section
 3) Modify the below variables to point to your environment:
 
- `static String server_name = "xxx.xxx.xxx.xxx"; //IP or FQDN for MSTR Intelligence Server`
+`static String server_name = "xxx.xxx.xxx.xxx"; //IP or FQDN for MSTR Intelligence Server`
+
 `static String server_port = "0"; //MSTR Intelligence Server Port`
+
 `static String project_name = "MicroStrategy Tutorial"; //Project to create session for`
+
 `static String admin_username = "username"; //MSTR Username`
+
 `static String admin_password = "password"; //MST Password`
   
 
