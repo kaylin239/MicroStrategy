@@ -1,6 +1,6 @@
 # JS Embedding API
 
-The JS embedding API is a relatively new API which allows developers to easily embed MicroStrategy dossiers and dashboards into 3rd party applications in a responsive manner. It also provides resources to add functionality such as controlling navigation, retrieving and applying filters, setting properties, and managing events, and supports several different authentication environments.
+The JS embedding API is a new API introduced in `version 10.9` which allows developers to easily embed MicroStrategy dossiers and dashboards into 3rd party applications in a responsive manner. It also provides resources to add functionality such as controlling navigation, retrieving and applying filters, setting properties, and managing events, and supports several different authentication environments.
 
 
 # Documentation
