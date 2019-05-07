@@ -16,6 +16,8 @@ This is a very simple sample to show how to instantiate a `WebIServerSession` ob
 `static String admin_username = "username"; //MSTR Username`
 
 `static String admin_password = "password"; //MST Password`
+
+4) Compile and run the sample
   
 
 # Dependencies
