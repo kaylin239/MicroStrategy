@@ -2,7 +2,7 @@
 
 The purpose of this sample is to show a simple React implementation of the MicroStrategy javascript embedding API.
 
-<img src="https://github.com/slippens/MicroStrategy/blob/master/JS%20Emebedding%20API/React%20Sample/results.png"  width="300"/>
+<img src="https://github.com/slippens/MicroStrategy/blob/master/JS%20Embedding%20API/React%20Sample/readmeContent/results.png"  width="300"/>
 
 ## Setup
 0) Download this repository
@@ -31,7 +31,7 @@ The purpose of this sample is to show a simple React implementation of the Micro
 
 
 	
-	<img src="https://github.com/slippens/MicroStrategy/blob/master/JS%20Emebedding%20API/React%20Sample/webAdmin.png"  width="500" />
+	<img src="https://github.com/slippens/MicroStrategy/blob/master/JS%20Embedding%20API/React%20Sample/readmeContent/webAdmin.png"  width="500" />
 
 
 	A webserver restart is required after modifying this value.
