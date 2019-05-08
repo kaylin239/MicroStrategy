@@ -23,13 +23,6 @@ The sample is written as a NodeJS application which could be easily extended to 
 
 1. Open the `config.js` file and set the various parameters according to your environment
 
-
-### Configure CORS settings (If hosting on another server other than the MicroStrategy Web server)
-
-1. Go to the MicroStrategyLibrary admin page (`https://[webserver]/MicroStrategyLibrary/admin/webserver`) 
-2. Under `Security Settings` check either `All` or `Specific` for the option to allow Library embedding in other sites. If you choose Specific you will need to explicity define the domains that have permission to embed the content.
-<img src="./readmeContent/e6.png"  width="800"/>
-
 ### Run Sample
 The sample is written for NodeJS, so you will first want to make sure you have Node installed. `node -v` will validate if you have node installed.
 
