@@ -9,9 +9,11 @@ The sample is written as a NodeJS application which could be easily extended to 
 
 
 
+<img src="./readmeContent/e2.png"  width="600"/>
+
 <img src="./readmeContent/e1.png"  width="600"/>
 
-<img src="./readmeContent/e2.png"  width="600"/>
+<img src="./readmeContent/e3.png"  width="600"/>
 
 ## Setup
 
