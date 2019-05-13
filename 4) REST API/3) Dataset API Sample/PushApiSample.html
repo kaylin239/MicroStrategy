@@ -1,0 +1,293 @@
+<html>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<body>
+	<div class="container"><div class="page-header"><h1>Cube Create or Update Programmatically Sample</h1></div></div>
+	<button type="button" class="btn btn-primary" onclick="begin()">Create or Update Cube</button>
+	<div class="well well-lg" id="cubeName"></div>
+	<div class="well well-lg" id="textArea"></div>
+
+
+<div class="container">
+  <h2>Data To Add</h2>          
+  <table class="table">
+    <thead>
+      <tr>
+        <th id="title1"></th>
+        <th id="title2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="value1"></td>
+        <td id="value2"></td>
+     
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+  
+<div class="well well-lg" id="cubeInfo"></div>
+
+<script src="./config.js"></script>
+<script>
+function begin() {
+
+    document.getElementById("cubeName").innerHTML = "Cube to create or update: " + config.cubeName;
+
+	
+	var baseRestURL = config.libraryURL;
+	var username = config.username;
+	var password = config.password;
+	var projectID = config.projectID;
+	var cubeName = config.cubeName;
+
+    createAuthToken(baseRestURL , username, password, function authCallBack(token) {
+        document.getElementById("textArea").innerHTML = "AuthToken: " + token;
+
+        //The below sample will generate data that creates an Attribute of ID, and a metric of Price
+        //Create row(s) of data for cube:
+        var id_val = Math.floor(Math.random() * 20000);
+        var price_val = Math.floor(Math.random() * 20000);
+
+	var JSONString = "[{\"ID\":"+id_val+",\"Price\":"+price_val+"}]";
+	var dataObject = JSON.parse(JSONString);
+	var base64EncodedData = btoa(JSONString);
+
+        //Print keys and values from defined data string
+        document.getElementById("title1").innerHTML = Object.keys(dataObject[0])[0];
+        document.getElementById("title2").innerHTML = Object.keys(dataObject[0])[1];
+        document.getElementById("value1").innerHTML = dataObject[0][Object.keys(dataObject[0])[0]];
+        document.getElementById("value2").innerHTML = dataObject[0][Object.keys(dataObject[0])[1]];
+
+		//We are searching to see if the cube already exists. If not -> Create, otherwise, update by appending additional data.
+        searchForMyReportsFolder(baseRestURL , token, projectID, function callback(MyReportsFolderID) {
+
+            if (MyReportsFolderID) {
+                console.log("MyReportsFolderID: " + MyReportsFolderID);
+
+                searchForCube(baseRestURL, token, projectID, MyReportsFolderID, cubeName, function callback(cubeID) {
+
+                    //define table structure
+                    var createTableStructure = "{\"name\":\"" + cubeName + "\",\"tables\":[{\"data\":\"" + base64EncodedData + "\",\"name\":\"Table\",\"columnHeaders\":[{\"name\":\"ID\",\"dataType\":\"DOUBLE\"},{\"name\":\"Price\",\"dataType\":\"DOUBLE\"}]}],\"metrics\":[{\"name\":\"Price\",\"dataType\":\"number\",\"expressions\":[{\"formula\":\"Table.Price\"}]}],\"attributes\":[{\"name\":\"ID\",\"attributeForms\":[{\"category\":\"ID\",\"expressions\":[{\"formula\":\"Table.ID\"}],\"dataType\":\"double\"}]}]}";
+                    var updateTableStructure = "{\"name\":\"Table\",\"columnHeaders\":[{\"name\":\"ID\",\"dataType\":\"DOUBLE\"},{\"name\":\"Price\",\"dataType\":\"DOUBLE\"}],\"data\":\"" + base64EncodedData + "\"}";
+
+                    if (cubeID) {
+                        console.log("Cube named: " + cubeName + " exists, append data");
+
+                        updateCube(baseRestURL, token, projectID, updateTableStructure, cubeID, function callback(request) {
+                            console.log("Update Response: " + request.response);
+                            console.log("Update Status: " + request.status);
+                            if (request.status == 200) {
+                                document.getElementById("cubeInfo").innerHTML = "A cube with ID: " + cubeID + " was updated with additional data";
+                            } else {
+                                document.getElementById("cubeInfo").innerHTML = "something went wrong, please check yout configuration variables";
+                            }
+                        });
+
+
+
+                    } else {
+                        console.log("Cube named: " + cubeName + " doesnt exist, create cube with initial data");
+
+                        createCube(baseRestURL, token, projectID, createTableStructure, function callback(response) {
+                            console.log(response);
+                            var responseObj = JSON.parse(response);
+                            var datasetID = responseObj.datasetId;
+                            document.getElementById("cubeInfo").innerHTML = "A cube with ID: " + datasetID + " and name: " + responseObj.name + " was added to your 'My Reports' folder";
+                        });
+
+
+
+                    }
+
+                });
+
+            } else {
+                alert("Error, could not locate 'My Reports' folder");
+                return;
+            }
+
+
+
+
+        });
+
+
+
+
+    });
+}
+
+function searchForMyReportsFolder(baseRestURL, authToken, projectID, callback) {
+
+    var APIPath = "/api/folders/myPersonalObjects";
+    var completeRestURL = baseRestURL + APIPath;
+    console.log("REST API URL: " + completeRestURL);
+
+    var method = "GET";
+    var url = completeRestURL;
+    var async = true;
+    var request = new XMLHttpRequest();
+    request.onload = function() {
+        console.log("ONLOAD");
+        var status = request.status; // HTTP response status, e.g., 200 for "200 OK"
+        console.log(status);
+        console.log(request.getAllResponseHeaders());
+        console.log(request.response);
+
+
+        var responseOBJ = JSON.parse(request.response);
+        for (var i = 0; i < responseOBJ.length; i++) {
+            var child = responseOBJ[i];
+
+            console.log("Evaluating: " + child.name);
+            if (child.name == "My Reports") {
+                console.log("Found MyReports Folder: " + child.name);
+                return callback(child.id);
+
+            }
+        }
+
+
+        return callback(null);
+    }
+
+    request.open(method, url, async);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.setRequestHeader("Accept", "application/json");
+    request.setRequestHeader("X-MSTR-AuthToken", authToken);
+    request.setRequestHeader("X-MSTR-projectID", projectID);
+    request.send();
+}
+
+function searchForCube(baseRestURL, authToken, projectID, myReportsFolderID, cubeName, callback) {
+
+    var APIPath = "/api/folders/" + myReportsFolderID;
+    var completeRestURL = baseRestURL + APIPath;
+    console.log("REST API URL: " + completeRestURL);
+
+    var method = "GET";
+    var url = completeRestURL;
+    var async = true;
+    var request = new XMLHttpRequest();
+    request.onload = function() {
+        console.log("ONLOAD");
+        var status = request.status; // HTTP response status, e.g., 200 for "200 OK"
+        console.log(status);
+        console.log(request.getAllResponseHeaders());
+        console.log(request.response);
+
+
+        var responseOBJ = JSON.parse(request.response);
+        for (var i = 0; i < responseOBJ.length; i++) {
+            var child = responseOBJ[i];
+
+            console.log("Evaluating: " + child.name);
+            if (child.name == cubeName) {
+                console.log("Found cube named: " + child.name);
+                return callback(child.id);
+
+            }
+        }
+
+
+        return callback(null);
+    }
+
+    request.open(method, url, async);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.setRequestHeader("Accept", "application/json");
+    request.setRequestHeader("X-MSTR-AuthToken", authToken);
+    request.setRequestHeader("X-MSTR-projectID", projectID);
+    request.send();
+}
+
+function createCube(baseRestURL, authToken, projectID, tableStructure, callback) {
+
+    var APIPath = "/api/datasets";
+    var completeRestURL = baseRestURL + APIPath;
+    console.log("REST API URL: " + completeRestURL);
+
+    var method = "POST";
+    var postData = tableStructure;
+    var url = completeRestURL;
+    var async = true;
+    var request = new XMLHttpRequest();
+    request.onload = function() {
+        console.log("ONLOAD");
+        var status = request.status; // HTTP response status, e.g., 200 for "200 OK"
+        console.log(status);
+        console.log(request.getAllResponseHeaders());
+
+        return callback(request.response);
+    }
+
+    request.open(method, url, async);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.setRequestHeader("Accept", "application/json");
+    request.setRequestHeader("X-MSTR-AuthToken", authToken);
+    request.setRequestHeader("X-MSTR-projectID", projectID);
+    request.send(postData);
+}
+
+function updateCube(baseRestURL, authToken, projectID, tableStructure, datasetID, callback) {
+
+    var APIPath = "/api/datasets/" + datasetID + "/tables/Table";
+    var completeRestURL = baseRestURL + APIPath;
+    console.log("REST API URL: " + completeRestURL);
+
+    var method = "PATCH";
+    var postData = tableStructure;
+    var url = completeRestURL;
+    var async = true;
+    var request = new XMLHttpRequest();
+    request.onload = function() {
+        console.log("ONLOAD");
+        var status = request.status; // HTTP response status, e.g., 200 for "200 OK"
+        console.log(status);
+        console.log(request.getAllResponseHeaders());
+
+        return callback(request);
+    }
+
+    request.open(method, url, async);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.setRequestHeader("Accept", "application/json");
+    request.setRequestHeader("UpdatePolicy", "Add");
+    request.setRequestHeader("X-MSTR-AuthToken", authToken);
+    request.setRequestHeader("X-MSTR-projectID", projectID);
+    request.send(postData);
+}
+
+function createAuthToken(baseRestURL, username, password, callback) {
+    var APIPath = "/api/auth/login";
+    var completeRestURL = baseRestURL + APIPath;
+    console.log("REST API URL: " + completeRestURL);
+
+    var method = "POST";
+    var postData = "{\"username\": \"" + username + "\",\"password\": \"" + password + "\",\"loginMode\": 1,\"applicationType\": 35}";
+    var url = completeRestURL;
+    var async = true;
+    var request = new XMLHttpRequest();
+    request.onload = function() {
+        console.log("ONLOAD");
+        var status = request.status; // HTTP response status, e.g., 200 for "200 OK"
+        console.log(status);
+        var token = request.getResponseHeader("x-mstr-authtoken");
+        console.log("Token: " + token);
+        return callback(token);
+    }
+
+    request.open(method, url, async);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.setRequestHeader("Accept", "application/json");
+    request.send(postData);
+}
+</script>
+
+
+
+</html>

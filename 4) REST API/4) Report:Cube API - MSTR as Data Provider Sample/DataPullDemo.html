@@ -1,0 +1,135 @@
+<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
+<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
+<script src="./config.js"></script>
+<script src="./gridtransform.js"></script>
+
+
+<html>
+	<body>
+		<h2>JQuery Table being populated by MSTR data via the REST API<h2>
+		<div id="jsGrid"></div>
+	</body>
+</html>
+
+<script>
+getRestSession(function(error, token) {
+    //Got token, now make API call for data
+
+    getReportData(token, config.reportID, function(error, response) {
+
+        //Data is within the response variable. Now render the data in desired UI	
+        createGrid(response);
+    });
+});
+
+function createGrid(response) {
+    //Create columns for jquery table:
+    var fields = [];
+
+    var def = response.result.definition;
+    for (var i = 0; i < def.attributes.length; i++) {
+        var field = {};
+        field.name = def.attributes[i].name;
+        field.type = "text";
+
+        fields.push(field);
+    }
+    for (var i = 0; i < def.metrics.length; i++) {
+        var field = {};
+        field.name = def.metrics[i].name;
+        field.type = "number";
+        fields.push(field);
+    }
+
+    //flatten data for jquery rendering (im using a transform someone else made to simplify the process)
+    var flattenedData = transformingTreeJsonToGridData(response);
+
+    //further tweek the transform to meet needs for jquery:
+
+    var formattedData = [];
+
+    for (var i = 1; i < flattenedData.length; i++) {
+        var row = flattenedData[i];
+
+        var formattedRow = {};
+
+        for (var j = 0; j < row.length; j++) {
+            formattedRow[fields[j].name] = row[j];
+        }
+        formattedData.push(formattedRow);
+    }
+
+    $("#jsGrid").jsGrid({
+        width: "100%",
+        height: "400px",
+
+        inserting: false,
+        editing: false,
+        sorting: true,
+        paging: true,
+
+        data: formattedData,
+
+        fields: fields
+    });
+}
+
+
+function getRestSession(callback) {
+    var post_data = '{\"username\": \"' + config.username + '\",\"password\": \"' + config.password + '\"}';
+    var port = '443';
+    var path = '/MicroStrategyLibrary/api/auth/login';
+    var url = config.webserver + ":" + port + path;
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    xhr.open("POST", url, true);
+
+    //Send the proper header information along with the request
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Accept", "application/json");
+
+    xhr.onreadystatechange = function() {
+        // Call a function when the state changes.
+
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 204) {
+            var token = xhr.getResponseHeader('x-mstr-authtoken');
+            return callback(null, token);
+        }
+    }
+    xhr.send(post_data);
+}
+
+
+function getReportData(token, reportID, callback) {
+    var post_data = '{}';
+    var port = '443';
+    var path = '/MicroStrategyLibrary/api/reports/' + reportID + '/instances';
+    var url = config.webserver + ":" + port + path;
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    xhr.open("POST", url, true);
+
+    //Send the proper header information along with the request
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("X-MSTR-AuthToken", token);
+    xhr.setRequestHeader("X-MSTR-ProjectID", config.projectID);
+
+    xhr.onreadystatechange = function() {
+        // Call a function when the state changes.
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            return callback(null, JSON.parse(this.response));
+        }
+    }
+    xhr.send(post_data);
+}
+</script>
