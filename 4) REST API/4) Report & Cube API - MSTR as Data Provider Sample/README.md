@@ -1,13 +1,8 @@
 ## Purpose
 
-The purpose of this sample is to show how to use the REST API to push external data into MicroStrategy. The sample generates 1 random row of data and will either:
+The purpose of this sample is to show how to use the REST API to push extract datasets (from either in-memory cubes or reports) which can then be rendered by a 3rd party UI. While MicroStrategy provides a number of ways to build interactive UIs in the form of dashboards, it is sometimes desirable to leverage a 3rd party platform to achieve the wanted look and feel. The JSON Data API allows developers to query data from MicroStrategy and return it in a JSON format. 
 
-- Initially create a new cube and push the generated row of data into it
-or
-- Detect that the cube already exists and pushs the additional row of data into the existing cube
-
-
-
+This sample takes the JSON payload from MicroStrategy and transforms it to be loaded into a JQuery table visualization.
 
 <img src="./readmeContent/e1.png"  width="600"/>
 
@@ -24,12 +19,11 @@ or
 
 ```javascript
 {
-	"host":"env-XXXXXX.customer.cloud.microstrategy.com", //webserver hosting the MicroStrategy Library application
-	"port":0, //IServer port
-	"username":"username",  //your username
-	"password":"password", //your password
-	"loginmode":1, //login mode: 1 is standard
-	"projectID":"B7CA92F04B9FAE8D941C3E9B7E0CD754", //ID of project where you'd like the cube to be created
+    "projectID": "B7CA92F04B9FAE8D941C3E9B7E0CD754",
+    "username" : "user",
+    "password": "password",
+    "webserver" : "https://env-XXXXXX.customer.cloud.microstrategy.com", 
+    "reportID" : "59F53DBC11E93B7235C50080EFE54414",
 }
 ```
 
