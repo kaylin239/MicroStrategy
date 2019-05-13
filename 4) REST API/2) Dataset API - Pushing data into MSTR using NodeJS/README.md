@@ -27,13 +27,13 @@ The sample is written as a NodeJS application which could be easily extended to 
 
 ```javascript
 {
-	"host":"env-XXXXXX.customer.cloud.microstrategy.com", `webserver hosting the MicroStrategy Library application`
-	"port":0, `IServer port`
-	"username":"username",  `your username`
-	"password":"password", `your password`
-	"loginmode":1, `login mode: 1 is standard`
-	"projectID":"B7CA92F04B9FAE8D941C3E9B7E0CD754", `ID of project where you'd like the cube to be created`
-	"nameOfCubeToCreateOrUpdate":"uploadCube" `Name of cube to create/update - you can make this anything`
+	"host":"env-XXXXXX.customer.cloud.microstrategy.com", //webserver hosting the MicroStrategy Library application
+	"port":0, //IServer port
+	"username":"username",  //your username
+	"password":"password", //your password
+	"loginmode":1, //login mode: 1 is standard
+	"projectID":"B7CA92F04B9FAE8D941C3E9B7E0CD754", //ID of project where you'd like the cube to be created
+	"nameOfCubeToCreateOrUpdate":"uploadCube" //Name of cube to create/update - you can make this anything
 }
 ```
 
