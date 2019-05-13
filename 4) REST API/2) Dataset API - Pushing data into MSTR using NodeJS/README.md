@@ -25,6 +25,16 @@ The sample is written as a NodeJS application which could be easily extended to 
 
 1. Open the `config.js` file and set the various parameters according to your environment
 
+{
+	"host":"env-XXXXXX.customer.cloud.microstrategy.com", `webserver hosting the MicroStrategy Library application`
+	"port":0, `IServer port`
+	"username":"username",  `your username`
+	"password":"password", `your password`
+	"loginmode":1, `login mode: 1 is standard`
+	"projectID":"B7CA92F04B9FAE8D941C3E9B7E0CD754", `ID of project where you'd like the cube to be created`
+	"nameOfCubeToCreateOrUpdate":"uploadCube" `Name of cube to create/update - you can make this anything`
+}
+
 ### Run Sample
 The sample is written for NodeJS, so you will first want to make sure you have Node installed. `node -v` will validate if you have node installed.
 
