@@ -9,11 +9,8 @@ or
 
 
 
-<img src="./readmeContent/r1.png"  width="600"/>
+<img src="./readmeContent/e1.png"  width="600"/>
 
-<img src="./readmeContent/r2.png"  width="600"/>
-
-<img src="./readmeContent/r3.png"  width="600"/>
 
 ## Setup
 
@@ -33,7 +30,6 @@ or
 	"password":"password", //your password
 	"loginmode":1, //login mode: 1 is standard
 	"projectID":"B7CA92F04B9FAE8D941C3E9B7E0CD754", //ID of project where you'd like the cube to be created
-	"nameOfCubeToCreateOrUpdate":"uploadCube" //Name of cube to create/update - you can make this anything
 }
 ```
 
@@ -42,5 +38,5 @@ Run the html sample from your webserver. If the sample seems to fail, run the sa
 
 
 ## Additional Documentation
-https://lw.microstrategy.com/msdz/MSDL/GARelease_Current/docs/projects/RESTSDK/Content/topics/REST_API/REST_API_PushDataAPI_MakingExternalDataAvailable.htm
+https://lw.microstrategy.com/msdz/MSDL/GARelease_Current/docs/projects/RESTSDK/Content/topics/REST_API/REST_API_JSONDataAPI_Workflow.htm
 
