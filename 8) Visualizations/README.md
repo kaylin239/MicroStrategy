@@ -1,6 +1,6 @@
 # Visualization SDK
 
-The visualization SDK allows developers to create and deploy their own visualizations for use within MicroStrategy dashboards. The SDK provides APIs to obtain the data for your visualization and a number of other features to let you design valuable interactive visualizations based on your unique needs.
+The visualization SDK allows developers to create and deploy their own visualizations for use within MicroStrategy dashboards. The SDK provides APIs to obtain the data for your visualization and a number of other features to let you design interactive visualizations based on your unique needs.
 
 
 <img src="./readmeContent/e1.png"  width="600"/>

@@ -1,0 +1,5 @@
+<visualizations>
+  <visualization-list name="ajax" show-in-web="true" view-mode="51">
+    <visualization attribute-minimum="0" desc="CollapsableTree" drop-zones="plugins.CollapsableTree.CollapsableTreeDropZones" editor-model="plugins.CollapsableTree.CollapsableTreeEditorModel" is-mojo="true" metric-minimum="0" scope="19" style-name="CollapsableTree" widget-type="7"/>
+  </visualization-list>
+</visualizations>

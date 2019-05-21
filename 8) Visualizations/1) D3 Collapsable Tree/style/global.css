@@ -1,0 +1,25 @@
+.custom-vis-layout.collapsabletree .node rect {
+ cursor: pointer;
+ fill: rgb(255, 255, 255);
+ fill-opacity: 0.5;
+ stroke: rgb(49, 130, 189);
+ stroke-width: 1.5px;
+ }
+
+.custom-vis-layout.collapsabletree .node text {
+ font-style: normal;
+ font-variant: normal;
+ font-weight: normal;
+ font-stretch: normal;
+ font-size: 10px;
+ line-height: normal;
+ font-family: sans-serif;
+ pointer-events: none;
+ }
+
+.custom-vis-layout.collapsabletree path.link {
+ fill: none;
+ stroke: rgb(158, 202, 225);
+ stroke-width: 1.5px;
+ }
+
