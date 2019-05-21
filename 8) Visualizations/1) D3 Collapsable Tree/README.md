@@ -16,17 +16,17 @@ https://bl.ocks.org/mbostock/1093025
 Very few modifications were needed to convert this to a visualization that can be used within MicroStrategy. The alterations are highlighted below.
 
 ```javascript
-//****** MODIFICATION*********//
+//BEGIN MODIFICATION*********//
 //Make change to render the content within the assigned div on screen
 //var svg = d3.select("body").append("svg")
 var svg = d3.select(this.domNode).append("svg")
-//****** MODIFICATION*********//
+//END MODIFICATION*********//
 //
     .attr("width", width + margin.left + margin.right)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-//********* Modification*********//
+//BEGIN Modification*********//
 //Make change to read data from Microstrategy rather than a static JSON data file as the original sample used
 /*
 d3.json("flare.json", function(error, flare) {
@@ -38,7 +38,7 @@ d3.json("flare.json", function(error, flare) {
 */
 var json = this.dataInterface.getRawData(mstrmojo.models.template.DataInterface.ENUM_RAW_DATA_FORMAT.TREE);
 update(root = json);
-//********* Modification*********//
+//END Modification*********//
 ```
 
 # Documentation 
