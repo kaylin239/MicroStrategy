@@ -7,13 +7,7 @@
  }
 
 .custom-vis-layout.collapsabletree .node text {
- font-style: normal;
- font-variant: normal;
- font-weight: normal;
- font-stretch: normal;
- font-size: 10px;
- line-height: normal;
- font-family: sans-serif;
+ font: 10px sans-serif;
  pointer-events: none;
  }
 

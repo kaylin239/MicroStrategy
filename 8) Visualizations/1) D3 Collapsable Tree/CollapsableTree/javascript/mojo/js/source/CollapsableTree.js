@@ -17,8 +17,9 @@
             cssClass: "collapsabletree",
             errorMessage: "Either there is not enough data to display the visualization or the visualization configuration is incomplete.",
             errorDetails: "This visualization requires one or more attributes and one metric.",
-            externalLibraries: [{url:"http://d3js.org/d3.v3.min.js"}],
+            externalLibraries: [{url:"https://d3js.org/d3.v3.min.js"}],
             useRichTooltip: false,
+            supportNEE: true,
             reuseDOMNode: false,
             plot:function(){
 var margin = {top: 30, right: 20, bottom: 30, left: 20},
@@ -36,20 +37,30 @@ var tree = d3.layout.tree()
 var diagonal = d3.svg.diagonal()
     .projection(function(d) { return [d.y, d.x]; });
 
+//****** MODIFICATION*********//
+//Make change to render the content within the assigned div on screen
 //var svg = d3.select("body").append("svg")
 var svg = d3.select(this.domNode).append("svg")
+//****** MODIFICATION*********//
+//
     .attr("width", width + margin.left + margin.right)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-//d3.json("flare.json", function(error, flare) {
-d3.json("../plugins/CollapsableTree/javascript/flare.json", function(error, flare) {
-  if (error) throw error;
-
+//********* Modification*********//
+//Make change to read data from Microstrategy rather than a static JSON data file as the original sample used
+/*
+d3.json("flare.json", function(error, flare) {
+ if (error) throw error;
   flare.x0 = 0;
   flare.y0 = 0;
   update(root = flare);
 });
+*/
+var json = this.dataInterface.getRawData(mstrmojo.models.template.DataInterface.ENUM_RAW_DATA_FORMAT.TREE);
+update(root = json);
+//********* Modification*********//
+
 
 function update(source) {
 
@@ -71,7 +82,7 @@ function update(source) {
     n.x = i * barHeight;
   });
 
-  // Update the nodes…
+  // Update the nodes?
   var node = svg.selectAll("g.node")
       .data(nodes, function(d) { return d.id || (d.id = ++i); });
 
@@ -113,7 +124,7 @@ function update(source) {
       .style("opacity", 1e-6)
       .remove();
 
-  // Update the links…
+  // Update the links?
   var link = svg.selectAll("path.link")
       .data(tree.links(nodes), function(d) { return d.target.id; });
 
