@@ -1,9 +1,9 @@
 # Purpose
 This is a sample MicroStrategy Web plugin that converts the D3 Collapasble Tree visual into a widget that can be consumed in MicroStrategy web
 
-<img src="./readmeContent/e0.png"  width="600"/>
+<img src="./readmeContent/e0.png"  width="400"/>
 
-<img src="./readmeContent/e1.png"  width="600"/>
+<img src="./readmeContent/e1.png"  width="700"/>
 
 # Deployment
 The below instructions explain how to deploy a visualization that has already been built using the MicroStrategy Visualization Builder. If you are interested in how to create the visualization yourself, code changes made to the original D3 visualization are noted in the `Developer Notes` section
