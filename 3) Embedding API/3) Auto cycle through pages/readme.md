@@ -1,15 +1,11 @@
 ## Purpose
 
-The purpose of this sample is to show how to create fully responsive portal that embeds MicroStrategy content and takes full advantage of the various eventHandlers and manipulations possible, such as:
-* Dynamic page navigation
-* Dynamic filtering
-* selection capturing
+This sample shows how to use the Embedding API to automatically cycle through the available pages of a dossier at a set interval. The sample can easily be reworked to cycle through different dossiers by calling the 'dossier.create' function to display a new dossier, rather than changing the current page of a single dossier.
 
 
 
 <img src="./readmeContent/e1.png"  width="600"/>
 
-<img src="./readmeContent/e2.png"  width="600"/>
 
 ## Setup
 
