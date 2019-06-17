@@ -1,0 +1,169 @@
+<!doctype html>
+<title>Cycle pages</title>
+
+
+<!-- load dependencies based on config files -->
+<script src="./config.js"></script>
+
+
+<style type="text/css">
+
+</style>
+
+<!-- build DOM -->
+<body>
+        <div id="navContainer"> </div>
+	<div>Going to next page in
+		<div id = "timer">5</div>
+	</div>
+	<div id="flexibleContent" class="flexChild"></div>
+</body>
+
+<!-- Scripts-->
+
+<script type="text/javascript"> 
+    var JSLink = config.embeddingLibPath;
+    var JSElement = document.createElement('script');
+    JSElement.src = JSLink;
+    JSElement.onload = OnceLoaded;
+    document.getElementsByTagName('head')[0].appendChild(JSElement);
+
+
+	var pages = [];
+
+
+    function OnceLoaded() {
+      
+      //Form PostData for login REST request
+      var postData = {};
+      postData.username = config.username;
+      postData.password = config.password;
+      postData.loginMode = 1;
+
+
+      var projectUrl = config.baseRestURL + '/app/' + config.projectID;
+      var dossierUrl = projectUrl + '/' + config.dossierID;
+      console.log("DossierURL: " + dossierUrl);
+
+      //populate div with Dossier:
+      microstrategy.dossier.create({
+          placeholder: document.getElementById("flexibleContent"),
+          url: dossierUrl,
+          enableCustomAuthentication: true,
+          enableResponsive: true,
+          customAuthenticationType: microstrategy.dossier.CustomAuthenticationType.AUTH_TOKEN,
+          getLoginToken: function() {
+              return getXHRRequestPromise(config.baseRestURL + '/api/auth/login', postData, 'POST', 'application/json', 'x-mstr-authToken').then(function(authToken) {
+                  return authToken;
+              })
+          }
+      }).then(function(dossier) {
+          //any code you want to run after dossier loads
+
+          //Function created to render UI for page navigation based on chapters/pages on loaded dossier
+          createChapterPageNav(dossier, document.getElementById("navContainer"));
+
+	
+      
+	setInterval(function(){
+		var timer = document.getElementById('timer');
+		var contents = parseInt(timer.innerHTML);
+		contents = contents - 1;
+
+		if(contents == 0){
+			contents = 5;
+
+			//call API to change page:
+			var currentPage = dossier.getCurrentPage();
+
+			var currentPageIndex = null;
+			for(var i = 0; i < pages.length; i++){
+				if(pages[i].nodeKey == currentPage.nodeKey){
+					currentPageIndex = i;
+				}
+			}
+
+			var desiredIndex = currentPageIndex + 1;
+				
+			//If we are through all pages, cycle to first page
+			if(desiredIndex == pages.length){
+				desiredIndex = 0;
+			}
+			
+			dossier.navigateToPage(dossier.getPageByNodeKey(pages[desiredIndex].nodeKey));
+
+			
+		}
+		timer.innerHTML = contents;
+
+ 
+	}, 1000);
+      });
+   
+      function getXHRRequestPromise(url, body, method, contentType, desiredHeader) {
+          return new Promise(function(resolve, reject) {
+              var xhr = new XMLHttpRequest();
+              xhr.open(method, url);
+              xhr.withCredentials = true;
+              xhr.setRequestHeader('Content-Type', 'application/json');
+              xhr.setRequestHeader("Accept", "application/json");
+              xhr.send(JSON.stringify(body));
+
+              xhr.onreadystatechange = function() {
+                  if (xhr.readyState === 2) {
+                      resolve(xhr.getResponseHeader(desiredHeader));
+                  } else {
+                      reject({
+                          status: this.status,
+                          statusText: xhr.statusText
+                      });
+                  }
+              };
+          });
+      };
+
+
+   
+       //Creates the chapter/page navigation UI
+    function createChapterPageNav(dossier, div) {
+
+      var navData = dossier.getTableContent();
+      var pill = document.createElement("ul");
+      pill.className = "nav nav-pills nav-stacked";
+     
+      for (var i = 0; i < navData.chapters.length; i++) {
+
+        var chapter = navData.chapters[i];
+
+
+        for (var j = 0; j < chapter.pages.length; j++) {
+          var page = chapter.pages[j];
+          var newChild = null;
+          var newHREF = null;
+
+	pages.push(page);
+
+          newChild = document.createElement("li");
+          newHREF = document.createElement("a");
+          newHREF.href = "#";
+          newHREF.style.textAlign = "left";
+          newHREF.innerHTML =  page.name;
+          newHREF.id = page.nodeKey;
+          console.log(newHREF.id);
+          newHREF.onclick = function() {
+            console.log("trying to navigate to: " + this.id)
+            dossier.navigateToPage(dossier.getPageByNodeKey(this.id))
+          };
+          newChild.appendChild(newHREF);
+          pill.appendChild(newChild);
+
+
+        }
+      }
+
+      div.appendChild(pill);
+
+    }
+    }
+</script>
+
