@@ -35,9 +35,7 @@ The blank will look for a match on the visualization title, such as `about cost`
      <img src="./readmeContent/6.png"  width="600"/>
      
 
-5. For the template, select `Fact Skill`. We will delete all the pre-generated code, but this template already includes a number of additional libraries we will take use of for our project.
-     <img src="./readmeContent/7.png"  width="600"/>
- 
+5. For the template, select `Start from scratch`
 
 6. On the left panel, click `JSON Editor` and paste in the contents from the **skill.json** file included in this repository.
       <img src="./readmeContent/8.png"  width="600"/>
