@@ -58,24 +58,14 @@ You can edit these phrases in the `intents` tab
 
 ### Create the Lambda Endpoint
 
-1. Go to https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions
-2. Login to your account
+1. Download the lambda.zip file from this repository 
+2. Upload the lambda function to your AWS Account
 
-3. Click `Create function` in the top right
-4. Select the option for ‘blueprints’ and select the fact or trivia nodeJS template. We will not use the code from this template, but it imports a number of frameworks we will need for our own purposes.
+#### Note: 
+AWS keeps changing how/where you can upload lambda functions so I am leaving this section to you. Find the appropriate process (using CLI, or some other method) to upload the lambda function to your environment.
 
-5. Fill out a name and role for the skill and click ‘create function’ on the bottom of the screen
-      <img src="./readmeContent/9.png"  width="600"/>
-
-6. Under the designer tab, add the trigger ‘Alexa Skills Kit’. In the window below, check ‘disable’ on Skill ID verification. (This is a security implementation to ensure only specific skills can leverage this lambda function, for demo purposes we will not perform a check, but in production you would want to perform this validation.) 
-      <img src="./readmeContent/10.png"  width="600"/>
-       <img src="./readmeContent/11.png"  width="600"/>
-7. Click `Save` in the top right and reload the window. (The code editor seems to disappear when triggers are added, refreshing the window will bring it back).
-
-8. Replace the entire code contents of the `index.js` with the provided **index.js** contained within this repository.
-
-9. Modify the Config object defined on line 5 with information from your own MicroStrategy environment. (You will need to use Desktop or the REST API to obtain your project ID, the other IDs can be obtained through web).
-       <img src="./readmeContent/12.png"  width="600"/>
+3. Modify the Config object defined on line 12 with information from your own MicroStrategy environment. (You will need to use Desktop or the REST API to obtain your project ID, the other IDs can be obtained through web).
+       <img src="./readmeContent/04.png"  width="600"/>
 
 10. Copy the ARN for the lambda function shown in the top right corner
         <img src="./readmeContent/13.png"  width="600"/>
@@ -92,16 +82,9 @@ You can edit these phrases in the `intents` tab
 1. On the top menu, click `test` and set skill testing enabled for `Development`.
         <img src="./readmeContent/15.png"  width="600"/>
  
-2. The launch request was hardcoded to respond ‘hello’. Try typing `Launch demo skill` to see if everything was setup properly
+2.  Try typing `Ask dashboard to tell me about revenue` to see if everything was setup properly
         
-<img src="./readmeContent/16.png"  width="300"/>
 
-3. Next, let’s try asking a question on the data. 
-`Ask demo skill what is my profit for computers in 2016`
-         <img src="./readmeContent/17.png"  width="300"/>
- 
-
-You can try various combinations of subcategory elements and years present in the sample dataset.
 
 ### additional info
 You can test this on a physical alexa device by simply logging into the device with the amazon account that developed the skill (as long as you set the skill as in development). 
