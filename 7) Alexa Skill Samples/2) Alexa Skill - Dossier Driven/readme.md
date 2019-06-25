@@ -1,16 +1,20 @@
 ## Purpose
 
-The purpose of this sample is to show how to create an Alexa Skill that is able to ask questions against a dossier designed within MicroStrategy. This skill allows you to define a visualization with a metric value which will be read aloud to the user if they say the phrase defined as the visualizations title:
-
-
-<img src="./readmeContent/01.png"  width="300"/>
-
-<img src="./readmeContent/02.png"  width="300"/>
-
+The purpose of this sample is to show how to create an Alexa Skill that is able to ask questions against a dossier designed within MicroStrategy. This skill allows you to define a visualization with a metric value which will be read aloud to the user if they say the phrase defined as the visualizations title.
 
 In this scenario, the intent was defined as:
+
 Ask Dashboard to tell me _________ 
+
 The blank will look for a match on the visualization title, such as `about cost` or `about revenue`
+
+
+<img src="./readmeContent/01.png"  width="500"/>
+
+<img src="./readmeContent/02.png"  width="500"/>
+
+
+
 
 
 ## Setup
