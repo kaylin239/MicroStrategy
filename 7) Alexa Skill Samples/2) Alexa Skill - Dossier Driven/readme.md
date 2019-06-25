@@ -1,8 +1,11 @@
 ## Purpose
 
-The purpose of this sample is to show how to create an Alexa Skill that is able to ask questions against a dataset contained within MicroStrategy. This particular sample utlizes in-memory cube datasets, but it can be easily modified to pull against report datasets as well. 
+The purpose of this sample is to show how to create an Alexa Skill that is able to ask questions against a dossier designed within MicroStrategy. This skill allows you to define a visualization with a metric value which will be read aloud to the user if they say the phrase defined as the visualizations title:
 
-<img src="./readmeContent/questions.png"  width="300"/>
+
+<img src="./readmeContent/01.png"  width="300"/>
+
+<img src="./readmeContent/02.png"  width="300"/>
 
 ## Setup
 
