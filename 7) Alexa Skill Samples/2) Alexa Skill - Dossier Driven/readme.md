@@ -21,7 +21,9 @@ The blank will look for a match on the visualization title, such as `about cost`
 
 ### Import sample Dossier into your environment
 
-1. ...
+1. Go to MicroStrategy Web and upload the sample dossier (`Alexa Dossier.mstr` file) by clicking on Create > Upload MSTR File
+
+<img src="./readmeContent/e4.png"  width="300"/>
 
 ### Create the Alexa Skill
 
