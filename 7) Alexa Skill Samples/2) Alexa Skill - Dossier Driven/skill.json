@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "demo skill",
+            "invocationName": "dashboard",
             "intents": [
                 {
                     "name": "AMAZON.CancelIntent",
@@ -24,64 +24,20 @@
                     "samples": []
                 },
                 {
-                    "name": "dataIntent",
+                    "name": "myIntent",
                     "slots": [
                         {
-                            "name": "subcategory",
-                            "type": "Subcategory"
-                        },
-                        {
-                            "name": "year",
-                            "type": "Year"
+                            "name": "Slot",
+                            "type": "AMAZON.SearchQuery"
                         }
                     ],
                     "samples": [
-                        "what is my profit for {subcategory} in {year}"
+                        "tell me {Slot}",
+                        "what is {Slot}"
                     ]
                 }
             ],
-            "types": [
-                {
-                    "name": "Subcategory",
-                    "values": [
-                        {
-                            "name": {
-                                "value": "electronics"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "books"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "Year",
-                    "values": [
-                        {
-                            "name": {
-                                "value": "2017"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "2020"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "2019"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "2018"
-                            }
-                        }
-                    ]
-                }
-            ]
+            "types": []
         }
     }
 }
