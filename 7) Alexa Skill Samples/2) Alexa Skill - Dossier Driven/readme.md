@@ -7,24 +7,17 @@ The purpose of this sample is to show how to create an Alexa Skill that is able 
 
 <img src="./readmeContent/02.png"  width="300"/>
 
+
+In this scenario, the intent was defined as:
+Ask Dashboard to tell me _________ 
+The blank will look for a match on the visualization title, such as `about cost` or `about revenue`
+
+
 ## Setup
 
-### Prepare the data within MicroStrategy
+### Import sample Dossier into your environment
 
-1. Import the included dataset.xlsx file as a cube
-
-   In MicroStrategy Web `Create > Add External Data`
-  
-   <img src="./readmeContent/1.png"  width="150"/>
-  
-2. Click finish and save cube.
-
-  <img src="./readmeContent/2.png"  width="500"/>
-  
-3. Right click on the created cube and go to properties to get the cube ID
-
-    <img src="./readmeContent/3.png"  width="300"/>
-        <img src="./readmeContent/4.png"  width="400"/>
+1. ...
 
 ### Create the Alexa Skill
 
