@@ -42,7 +42,7 @@ The blank will look for a match on the visualization title, such as `about cost`
 
 Click `Save Model` and then `Build Model`. This process may take a few minutes to complete. A popup will appear when finished.
 
-## NOTE
+# NOTE
 The invocation name is currenty set to `dashboard`. This value can be changed by clicking on the `invocation` tab on the left.
 
 Also, this skill is able to capture the entirety of your spoken phrase by using Amazons `search query` slot type. This unique slot type requires a leading phrase. In this example, 2 leading phrases were created for you:
