@@ -10,7 +10,7 @@ Features of this customization are:
 
 <img src="./readmeContent/f2.png"  width="600"/>
 
-<img src="./readmeContent/f1.png"  width="600"/>
+<img src="./readmeContent/f3.png"  width="600"/>
 
 ## Workflow
 
