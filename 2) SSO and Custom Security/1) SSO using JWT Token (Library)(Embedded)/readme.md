@@ -1,15 +1,21 @@
 ## Purpose
 
-The purpose of this sample is to show how to create fully responsive portal that embeds MicroStrategy content and takes full advantage of the various eventHandlers and manipulations possible, such as:
-* Dynamic page navigation
-* Dynamic filtering
-* selection capturing
+The purpose of this sample is to show how the authentication process for Library can be customized to accept a JWT Token to automatically log a user into the MicroStrategy system and show content embedded within your own application.
 
+Features of this customization are:
+* Accept JWT token from parent application
+* Pass JWT to external system for validation (NodeJS server) `Not required, but was part of the requested POC workflow`
+* Automatically create users if they do not already exist, based on JWT token parameters
+* Automatically assign the user to the desired user groups based on JWT token parameters
 
+<img src="./readmeContent/f2.png"  width="600"/>
 
-<img src="./readmeContent/e1.png"  width="600"/>
+<img src="./readmeContent/f1.png"  width="600"/>
 
-<img src="./readmeContent/e2.png"  width="600"/>
+## Workflow
+
+<img src="./readmeContent/diagram1.png"  width="600"/>
+
 
 ## Setup
 
