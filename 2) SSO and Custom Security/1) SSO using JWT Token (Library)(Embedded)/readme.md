@@ -1,5 +1,9 @@
 ## Purpose
 
+<img src="./readmeContent/f2.png"  width="300"/>
+
+<img src="./readmeContent/f3.png"  width="250"/>
+
 The purpose of this sample is to show how the authentication process for Library can be customized to accept a JWT Token to automatically log a user into the MicroStrategy system and show content embedded within your own application.
 
 Features of this customization are:
@@ -8,9 +12,7 @@ Features of this customization are:
 * Automatically create users if they do not already exist, based on JWT token parameters
 * Automatically assign the user to the desired user groups based on JWT token parameters
 
-<img src="./readmeContent/f2.png"  width="600"/>
 
-<img src="./readmeContent/f3.png"  width="600"/>
 
 ## Workflow
 
