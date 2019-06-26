@@ -1,21 +1,27 @@
 ## Purpose
 
 <img src="./readmeContent/f2.png"  width="500"/>
-<img src="./readmeContent/f3.png"  width="350"/>
 
 The purpose of this sample is to show how the authentication process for Library can be customized to accept a JWT Token to automatically log a user into the MicroStrategy system and show content embedded within your own application.
 
-Features of this customization are:
-* Accept JWT token from parent application
-* Pass JWT to external system for validation (NodeJS server) `Not required, but was part of the requested POC workflow`
-* Automatically create users if they do not already exist, based on JWT token parameters
-* Automatically assign the user to the desired user groups based on JWT token parameters
+Additional features demonstrated:
+* Automated user creation
+* Automated user group assignment
 
 
 
 ## Workflow
 
 <img src="./readmeContent/diagram1.png"  width="600"/>
+
+
+For this particular engagement, the requirement was to:
+* Take in a JWT token from the parent application
+* Communicate with an internal server to decrypt/validate the JWT Token (NodeJS Server)
+* Create the user if it already doesn't exist
+* Assign the user to the groups defined by the JWT Token
+* Seamlessly show the interactive MicroStrategy content without ever prompting for credentials
+
 
 
 ## Setup
