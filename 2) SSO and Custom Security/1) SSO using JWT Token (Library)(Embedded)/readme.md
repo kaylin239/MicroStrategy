@@ -50,7 +50,7 @@ Note – This com folder contains a sample custom class which was built to parse
 If the web application that will be embedding MicroStrategy content lives on a separate domain, the below steps must be performed to enable this communication
 1. Go to the MicroStrategyLibrary admin page (`https://[webserver]/MicroStrategyLibrary/admin/webserver`) 
 2. Under `Security Settings` check either `All` or `Specific` for the option to allow Library embedding in other sites. If you choose Specific you will need to explicity define the domains that have permission to embed the content.
-<img src="./readmeContent/e6.png"  width="800"/>
+<img src="./readmeContent/f4.png"  width="800"/>
 
 ### Enable Trusted Authentication for MicroStrategy Library
 1.	Launch the MicroStrategy Library admin page
