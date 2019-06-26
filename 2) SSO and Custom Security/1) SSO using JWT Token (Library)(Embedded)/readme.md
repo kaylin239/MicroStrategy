@@ -59,7 +59,7 @@ a.	https://WEBSERVERNAME/MicroStrategyLibrary/admin/webserver
 
 <img src="./readmeContent/f5.png"  width="800"/>
 
-### Deploy sample application
+### Deploy sample embedded application
 1.	Navigate to your webserver and deploy the provided index.html file  
 2.	Edit the index.html file
 3.	Alter the configuration parameters on lines 16-25, namely:
@@ -72,14 +72,18 @@ e.	Line 25 – The JWT Token that will be used for SSO. A Sample JWT token is pr
  
 Note – The sub value is what the sample expects to be mapped to a MicroStrategy user, which will be done in the next steps.
 
-### Configure MicroStrategy user for Trusted Authentication
-1.	Open MicroStrategy Developer
-2.	Edit a user and go to the Authentication tab
-3.	Set the User ID that matches the sub parameter from the JWT token. The sample value is 1234567890 
+### Deploy NodeJS server for JWT validation
+
+1) Install Node on your machine if you don't already have it
+2) Migrate the included `nodeJS` folder to your machine
+3) Instruct node to run the index.js file
+`node index.js`
   
 
 ### Restart the webserver for all changes to take place
 1.	Restart Webserver
 
-### Run sample index.html file to see the embedded content.
+### Run sample
+In your browser, run the index.html from your webserver to see the embedded content.
+
 
