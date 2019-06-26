@@ -10,4 +10,7 @@ Documentation for the various SDKs and APIs MicroStrategy offers can be found at
 https://developer.microstrategy.com
 
 
+## Contact
+
+https://www.linkedin.com/in/stephenlippens/
 
