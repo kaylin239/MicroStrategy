@@ -57,7 +57,7 @@ If the web application that will be embedding MicroStrategy content lives on a s
 a.	https://WEBSERVERNAME/MicroStrategyLibrary/admin/webserver
 2.	Check the option for Trusted and click save. 
 
-<img src="./readmeContent/e6.png"  width="800"/>
+<img src="./readmeContent/f5.png"  width="800"/>
 
 ### Deploy sample application
 1.	Navigate to your webserver and deploy the provided index.html file  
