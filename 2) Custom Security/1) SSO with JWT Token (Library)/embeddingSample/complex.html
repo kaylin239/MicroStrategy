@@ -1,0 +1,399 @@
+
+
+<html>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<head>
+	<title>Company Home Page</title>
+<link rel="shortcut icon" type="image/x-icon" href="https://www.microstrategy.com/favicon.ico"/>
+</head>
+<div style = "padding-bottom:7px">
+<h1>MSTR Portal Demo</h1>
+</div>
+
+<div id="menu-outer">
+  <div class="table" style="margin-bottom:-10px">
+    <ul id="horizontal-list" style="background-color:#D9232E !important;">
+ 	<li><a class="active" href="#home" style="color: white !important;">Home</a></li>
+  	<li><a href="#news" style="color:white !important;">Products</a></li>
+  	<li><a href="#contact" style="color:white !important;">Solutions</a></li>
+  	<li><a href="#about" style="color:white !important;">Analytics</a></li>
+    </ul>
+  </div>
+</div>
+
+<body>
+     	<div style="width: 10%; height: 5%; float:left;"></div>
+	<div style="width: 90%; height: 7%; background-color: #white; float:left;">
+<ul2 id="filters">
+
+  <li2 ><a href="#home" style=" font-weight: bold;">Select Element:</a></li2>
+ 
+
+<li2 style="float:right"><a href="#">Selected Item: <span id="badge" class="badge">-</span></a><li2>
+</ul2>
+
+
+	</div>
+
+	
+
+    </div>
+    <div style="width: 10%; height: 80%; background-color: white; float:left;">
+        <div id="nav1" style="width: 100%; height: 50%;"></div>
+    </div>
+
+
+    <div style="width: 90%; height: 60%; background-color: white; float:right;">
+        <div id="dossierContainer1" style="width: 100%; height: 100%;"></div>
+    </div>
+	 <div style="width: 90%; height: 20%; background-color: lightgrey; float:right;">
+        <div id="jwtDiv" style="width: 100%; height: 100%;"></div>
+    </div>
+</body>
+
+<!-- Replace path to point to the embeddingLib in your environment -->
+<script src="https://env-115442.customer.cloud.microstrategy.com/MicroStrategyLibrary/javascript/embeddinglib.js"></script>
+<script>
+    //BEGIN CONFIG PARAMETERS -------------------------------------------------------------------------
+    baseRestURL = "https://env-115442.customer.cloud.microstrategy.com/MicroStrategyLibrary";
+    projectID = "B7CA92F04B9FAE8D941C3E9B7E0CD754";
+    dossierID = "AF62EC9A11E80054B9750080EFA5B63B";
+	jwtToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiand0VGVzdCIsImdyb3VwIjoidGVzdGdyb3VwIiwiaWF0IjoxNTE2MjM5MDIyfQ.deCNaW_B2Qylhx7q0a2KWj6EbPX6QLeV2jbbWoEoawI";
+    //END CONFIG PARAMETERS -------------------------------------------------------------------------
+
+var dossier1 = null;
+
+function filter1(selectionValue){
+debugger;
+	 dossier1.getFilterList().then(function(filterList) {
+                //find filters that can be effected by selection:
+ 		var selections = [];
+                var selectionName = "EMP DPTM";
+               
+                    
+                    var selectionObj = {};
+                    selectionObj.value = selectionValue;
+                    selections.push(selectionObj);
+		
+                for (var i = 0; i < filterList.length; i++) {
+                    var filter = filterList[i];
+                    var availableFilterName = filter.filterName;
+                    var availableFilterKey = filter.filterKey;
+                    debugger;
+                   // if (availableFilterName == selectionName) {
+                        //apply to dossier
+                        debugger;
+
+                        var filterDataObj = {};
+                        var filterInfoObj = {};
+                        filterInfoObj.key = availableFilterKey;
+                        filterDataObj.selections = selections;
+                        filterDataObj.filterInfo = filterInfoObj;
+                        debugger;
+                        dossier1.filterSelectMultiAttributes(filterDataObj);
+                  //  }
+                }
+            });
+}
+
+
+
+
+    //Form PostData for login REST request
+  //JWT Token
+    var postData = jwtToken;
+
+	var jwtDiv = document.getElementById('jwtDiv');
+	jwtDiv.innerHTML = "JWT_Token:<br>"+ postData + "<br><br> Online took to view/create test token: <br>  <a target=\"_blank\" href=\"https://jwt.io/\">https://jwt.io/</a>";
+	
+	
+	
+
+
+    var projectUrl = baseRestURL + '/app/' + projectID;
+    var dossierUrl = projectUrl + '/' + dossierID;
+    console.log("DossierURL: " + dossierUrl);
+
+    //populate div with Dossier:
+    microstrategy.dossier.create({
+        placeholder: document.getElementById("dossierContainer1"),
+        url: dossierUrl,
+        enableCustomAuthentication: true,
+        enableResponsive: false,
+        containerWidth: 400,
+        containerHeight: 400,
+        customAuthenticationType: microstrategy.dossier.CustomAuthenticationType.AUTH_TOKEN,
+        getLoginToken: function() {
+            return getXHRRequestPromise(baseRestURL + '/api/auth/login', postData, 'POST', 'application/json', 'x-mstr-authToken').then(function(authToken) {
+                return authToken;
+            })
+        }
+    }).then(function(dossier) {
+        //any code you want to run after dossier loads
+	dossier1 = dossier;
+        var navDiv = document.getElementById("nav1");
+        createChapterPageNav(dossier, navDiv);
+
+//register handlers
+
+
+	 dossier.getFilterList().then(function(filterList) {
+                //find filters that can be effected by selection:
+
+		//get list of possible items from first element filter on dossier
+		var items = filterList[0].filterDetail.items;
+
+		var filterDisplay = document.getElementById("filters");
+      	       for (var i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    var name = item.name;
+                    var value = item.value;
+
+			var li2 = document.createElement("li2");
+			var a = document.createElement("a");
+			a.className = "active";
+			a.href = "#";
+			a.innerHTML = item.name;
+			a.value = item.value;
+			li2.appendChild(a);
+			a.onclick = function(){debugger; filter1(this.value)};
+			filterDisplay.appendChild(li2);
+
+		//var html =  '<li2><a onclick="filter1(\"h2;AF6A647011E80054CC410080EFA5B63B\")" class="active" href="#Sales">Sales</a></li2>';
+		//html = $.parseHTML( html);
+		//$("#filters").append(html);
+		
+ 
+       	       }
+            });
+
+
+		
+
+        var selectHandler = function(e) {
+		
+		if(e.graphics.length == 0){
+			document.getElementById("badge").innerText = "-";
+		}
+debugger;
+               var selection = e.graphics[0][e.graphics[0].length-1];
+//debugger;
+		document.getElementById("badge").innerText = selection.v.toUpperCase();
+			debugger;
+	
+
+
+            dossier.getFilterList().then(function(filterList) {
+			
+		/*
+                var selections = [];
+                var selectionName = null;
+                for (var i = 0; i < e.graphics.length; i++) {
+                    var selection = e.graphics[i];
+                    //single attribute selection:						
+                    selectionName = selection[0].n;
+
+                    var selectionValue = selection[0].vid;
+                    var selectionObj = {};
+                    selectionObj.value = selectionValue;
+                    selections.push(selectionObj);
+                }
+                debugger;
+		*/
+                //find filters that can be effected by selection:
+		
+		/*
+                for (var i = 0; i < filterList.length; i++) {
+                    var filter = filterList[i];
+                    var availableFilterName = filter.filterName;
+                    var availableFilterKey = filter.filterKey;
+                    debugger;
+                    if (availableFilterName == selectionName) {
+                        //apply to dossier2
+                        debugger;
+
+                        var filterDataObj = {};
+                        var filterInfoObj = {};
+                        filterInfoObj.key = availableFilterKey;
+                        filterDataObj.selections = selections;
+                        filterDataObj.filterInfo = filterInfoObj;
+                        debugger;
+                        dossier2.filterSelectMultiAttributes(filterDataObj);
+
+
+
+                    }
+                }
+		*/
+
+
+
+            });
+
+    }
+ dossier.registerEventHandler(
+            "onGraphicsSelected",
+            selectHandler)
+    });
+
+
+
+
+
+    function getXHRRequestPromise(url, body, method, contentType, desiredHeader) {
+        return new Promise(function(resolve, reject) {
+            var xhr = new XMLHttpRequest();
+            xhr.open(method, url);
+           // xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.withCredentials = true;
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.send(JSON.stringify(body));
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 2) {
+                    resolve(xhr.getResponseHeader(desiredHeader));
+                } else {
+                    reject({
+                        status: this.status,
+                        statusText: xhr.statusText
+                    });
+                }
+            };
+        });
+    };
+
+    function createChapterPageNav(dossier, div) {
+
+        var navData = dossier.getTableContent();
+
+
+
+        var pill = document.createElement("ul");
+        pill.className = "nav nav-pills nav-stacked";
+        var child = document.createElement("li");
+        child.className = "active";
+        var href = document.createElement("a");
+        href.href = "#";
+	href.style.textAlign = "left";
+	href["font-weight"] = "bold !important";
+	href["color"] = "black !important";
+	href["background-color"] = "white !important";
+        href.innerHTML = "Table Of Contents";
+        child.appendChild(href);
+        pill.appendChild(child);
+
+
+
+
+        for (var i = 0; i < navData.chapters.length; i++) {
+
+            var chapter = navData.chapters[i];
+
+
+            for (var j = 0; j < chapter.pages.length; j++) {
+                var page = chapter.pages[j];
+                var newChild = null;
+                var newHREF = null;
+
+                newChild = document.createElement("li");
+                newHREF = document.createElement("a");
+                newHREF.href = "#";
+		newHREF.style.textAlign = "left";
+                newHREF.innerHTML =  page.name;
+                newHREF.id = page.nodeKey;
+                console.log(newHREF.id);
+                newHREF.onclick = function() {
+                    console.log("trying to navigate to: " + this.id)
+                    dossier.navigateToPage(dossier.getPageByNodeKey(this.id))
+                };
+                newChild.appendChild(newHREF);
+                pill.appendChild(newChild);
+
+
+            }
+        }
+
+        div.appendChild(pill);
+
+    }
+</script>
+
+
+<style>
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+	background-color: white !important;
+	color: black !important;
+	font-weight: bold !important;
+}
+
+ul3 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #D9232E;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li3 a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #D9232E;
+}
+
+
+ul2 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f2f2f2;
+}
+
+li2 {
+    float: left;
+}
+
+li2 a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li2 a:hover {
+   
+}
+
+</style>
+</html>
