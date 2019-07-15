@@ -6,7 +6,7 @@ import com.microstrategy.web.objects.WebObjectsFactory;
 
 public class CreateSessionSample {
 
-	static String server_name = "10.250.117.26"; //IP or FQDN for MSTR Intelligence Server
+	static String server_name = "XXX.XXX.XXX.XXX"; //IP or FQDN for MSTR Intelligence Server
 	static String server_port = "0"; //MSTR Intelligence Server Port
 	static String project_name = "MicroStrategy Tutorial"; //Project to create session for
 	static String admin_username = "username"; //MSTR Username
