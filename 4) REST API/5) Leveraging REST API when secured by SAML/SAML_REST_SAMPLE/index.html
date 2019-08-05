@@ -1,0 +1,90 @@
+<!doctype html>
+<title>Stephen's Embedding Sample</title>
+
+
+<!-- load dependencies based on config files -->
+<script src="./config.js"></script>
+
+
+<!-- build DOM -->
+<body>
+<div><h1>Generate AuthToken using SAML and make REST API Call for user info</h1></div>
+<div id="flexibleContent"></div>
+<div id="rest_data"></div>
+</body>
+
+<!-- Scripts-->
+
+<script type="text/javascript"> 
+    var JSLink = config.embeddingLibPath;
+    var JSElement = document.createElement('script');
+    JSElement.src = JSLink;
+    JSElement.onload = OnceLoaded;
+    document.getElementsByTagName('head')[0].appendChild(JSElement);
+
+
+    function OnceLoaded() {
+
+      var projectUrl = config.baseRestURL + '/app/' + config.projectID;
+      var dossierUrl = projectUrl + '/' + config.dossierID;
+      console.log("DossierURL: " + dossierUrl);
+
+
+      //populate div with Dossier:
+      microstrategy.dossier.create({
+          placeholder: document.getElementById("flexibleContent"),
+          url: dossierUrl,
+          enableCustomAuthentication: false,
+          enableResponsive: true,
+  	}).then(function(dossier) {
+          //any code you want to run after dossier loads
+		
+	var cookie = dossier._msgRouter.iframe.contentDocument.cookie;
+	var split_read_cookie = cookie.split(";");
+
+	var iSession = null;
+	for (i=0;i<split_read_cookie.length;i++){
+    		var value=split_read_cookie[i];
+    		value=value.split("=");
+    		if(value[0]=="iSession"){
+			iSession = value[1];
+        		console.log(iSession);
+    		}
+	}
+
+
+	//Make call to pull data from report
+	apiRequest(iSession, function(response){
+		//do what you need with the data.
+		
+		document.getElementById("rest_data").innerHTML = response;
+	});
+			
+	
+		
+      });
+  }
+
+
+ function apiRequest(authToken, callback) {
+		var body = null;
+                var xhr = new XMLHttpRequest();
+              	xhr.open('GET', config.baseRestURL + '/api/sessions/userInfo');
+             	xhr.withCredentials = true;
+              	xhr.setRequestHeader('Content-Type', 'application/json');
+            	xhr.setRequestHeader("Accept", "application/json");
+		xhr.setRequestHeader("X-MSTR-AuthToken", authToken);
+
+	
+              xhr.send();
+
+              xhr.onreadystatechange = function() {
+                  if (xhr.readyState === 4) {
+			console.log(xhr.readyState, xhr.response);	
+                    	 return callback(xhr.response);
+                  }
+              };
+
+      };
+  
+</script>
