@@ -86,9 +86,6 @@ When accessing the MicroStrategyLibrary application, you should now be presented
 
 
 
-<img src="./readmeContent/e14.png"  width="600"/>
-
-
 ### Official Documentation:
-This example is a bare-bones example of a SAML deployment, and there are many additional configuration options available. Please refer to the official documentation for more details.
+ Please refer to the official documentation for more details.
 https://www2.microstrategy.com/producthelp/current/SystemAdmin/WebHelp/Lang_1033/Content/enable_saml_for_library.htm
