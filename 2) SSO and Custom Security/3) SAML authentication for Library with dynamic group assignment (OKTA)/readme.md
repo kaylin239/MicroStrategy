@@ -13,126 +13,78 @@ The purpose of this sample is to show how leverage OKTA as a SAML SSO provider f
 
 2) Go to Web Single-Sign-On > Configuration and enable the 3 checkboxes shown in the image below. These settings will allow users who do no currently exist within the MicroStrategy metadata to be created on the fly and have their security updated based on values provided in the SAML assertion.
 <img src="./readmeContent/a2.png"  width="300"/>
+
+
+### Configure MicroStrategy Library for SAML Authentication
+1) To to the Library admin page 'https://[WEBSERVER]/MicroStrategyLibrary/admin' and go to the 'Library Server' tab. 
+2) Ensure that SAML authentication is enabled
+3) Ensure that a Trust relationship is established between the Library and Intelligence Server. If this is not setup, go through the wizard on this page to set this security component up.
 <img src="./readmeContent/a3.png"  width="300"/>
 
 ### Create a test user within OKTA
 1) Within the OKTA admin page, go to the users page and create a group and user, and assign this user to the group. In this test case, the group is called 'OktaTest'. In this scenario, the goal is to dynamically create this user in MicroStrategy and apply this user permissions in MicroStrategy defined by the usergroup 'OktaTest'. This group will need to exist in the metadata and have the appropriate permissions assigned ahead of time. 
 <img src="./readmeContent/a4.png"  width="300"/>
 
-### Configure MicroStrategy Library for SAML Authentication
-1) 
+### Generate SAML configuration files using the Library SAML config page
+1) go to the SAML setup page 'https://[Webserver]/MicroStrategyLibrary/saml/config/open' 
+2) Specify a unique ID for the Entity ID which will represent the MicroStrategy Library application as a service provider (SP)
 <img src="./readmeContent/a5.png"  width="300"/>
+In this example, we will be using the default asserting variable names for all other fields, but these may also be altered based on IDP requirements.
+3) Click 'Submit' to complete this part of the configuration.
+
+### Confirm creation of SAML config files and locate the SSO URL
+1) Within the MicroStrategy Library web application, navigate to MicroStrategyLibrary/WEB-INF/classes/auth/SAML/. You will see that 3 files were generated (MstrSamlConfig.xml, SamlKeystore.jks, SPMetadata.xml)
+2) Open the SPMetadata.xml file.
 <img src="./readmeContent/a6.png"  width="300"/>
+
+3) Search for 'SSO' and copy the URL that comes up from the search. This is the SP login URL that the OKTA IDP will need in the next step.
 <img src="./readmeContent/a7.png"  width="300"/>
+
+### Create a SAML 2.0 application within OKTA
+1) Go back to the OKTA admin console and select the 'Add Application' option
 <img src="./readmeContent/a8.png"  width="300"/>
+
+2) Create a SAML 2.0 application 
 <img src="./readmeContent/a9.png"  width="300"/>
+
+3) For the 'Single sign on URL' field, provide the URL obtained from the SPMetadata.xml file
+4) Set the SP Entity ID as the unique ID specified when generating the SAML configuration files for Library. In our example it is 'SP_ENTITY'
 <img src="./readmeContent/a10.png"  width="300"/>
+5) Under the 'Group Attribute Statements', set the parameter as 'Groups' and set the filter rules to locate the group(s) that you would like to sync. In our example, we want to pass over the group 'OktaTest' if present on the OKTA user. 
+<img src="./readmeContent/a16.png"  width="300"/>
+
+6) Step through the rest of the setup guide until complete.
+
+### Obtain and deploy the IDPMetadata within Library
+1) Once the application is configured, click on the link shown in the screenshot below to obtain the Identity Provider (IDP) metadata. 
 <img src="./readmeContent/a11.png"  width="300"/>
 <img src="./readmeContent/a12.png"  width="300"/>
+
+2) Copy this content and navigate back to MicroStrategyLibrary/WEB-INF/classes/auth/SAML/.
+3) Create a file called 'IDPMetadata.xml' and paste the contents into this file.
+
+
 <img src="./readmeContent/a13.png"  width="300"/>
+
+### Assign OKTA users to the OKTA application created
+For a user to be allowed to leverage the OKTA application, the user must be assigned to it. 
+1) Go to the OKTA Admin Page and open the newly created SAML 2.0 application.
+2) Click on the 'Assignments' tab and assign the user created earlier in this guide.
+
 <img src="./readmeContent/a14.png"  width="300"/>
+
+### Ensure a group in MicroStrategy matches the OKTA group and has all required permissions
+1) In MicroStrategy Developer, ensure that a group called 'OktaTest' exists and has the various ACLs and permissions you would like the user to have when accessing MicroStrategy. 
 <img src="./readmeContent/a15.png"  width="300"/>
-<img src="./readmeContent/a16.png"  width="300"/>
+
+### Restart the WebServer
+1) Restart the Webserver so that all the modifications made can take place. 
+
+When accessing the MicroStrategyLibrary application, you should now be presented with the OKTA login page, or be automatically logged in if a valid assertion already exists within your browser session.
+
 <img src="./readmeContent/a17.png"  width="300"/>
 
 
-### Generate SAML Config files for MicroStrategy Web
-
-1.	Open the saml config page within your MicroStrategy Library application:
- `http(s)://<FQDN>:<port>/<MicroStrategyLibrary>/saml/config/open`
- 
-2)	Specify an Entity ID that is unique to your application. For this example we will use the entity `2019Entity`
-
-<img src="./readmeContent/f1.png"  width="300"/>
-
-
-3)	For the Assertion Attribute mapping, ensure the values match what will be provided by the IDP. In this example with OKTA, there is no need to change any of these values for a simple prototype. 
-
-4)	Click `Generate config` on the bottom of the page.
-
-This will generate a number of files within the web application at the path:
-`../WEB-INF/classes/resources/SAML/`
-
-
-
-
-### Setup OKTA as IDP
-
-1)	Sign into Okta
-
-2)	Go to the Admin page 
-
-<img src="./readmeContent/e2.png"  width="500"/>
-
-3)	Select `Classic UI’
-
-<img src="./readmeContent/e3.png"  width="500"/>
-
-4)	Click on `Applications`
-
-
-5)	Click `Create New App’ and choose a SAML 2.0 application
-
-<img src="./readmeContent/e5.png"  width="500"/>
-
-6) Open the SPMetadata.XML file generated within your MicroStrategy Web application at the path `../WEB-INF/classes/resources/SAML/` and locate the SSO URL defined as the 'HTTP-POST' Binding value. It should be a URL ending in `/SSO`
-
-<img src="./readmeContent/e6.png"  width="500"/>
-
-7) Provide this URL as the `Single sign on URL` value for OKTA
-
-8) Provide the Entity ID you assigned MicroStrategy. In our example it is `2019Entity`
-
-<img src="./readmeContent/e7.png"  width="500"/>
-
-9)	Click through the rest of the menu options to complete the app registration.
-
-10)	Download the Identity Provider metadata as `IDPMetadata.xml`
-
-<img src="./readmeContent/e8.png"  width="500"/>
-
-<img src="./readmeContent/e9.png"  width="500"/>
-
-
-11) Upload this `IDPMetadata/xml` file to the SAML folder where the other config files were generated earlier:
-`../WEB-INF/classes/resources/SAML/`
-
-### Setup Trust Relationship between the Web and Intelligence Server
-1) Go to the MSTR web admin page `https://[Webserver]/MicroStrategy/servlet/mstrWebAdmin`and click `modify` next to your desired Intelligence server.
-
-<img src="./readmeContent/e10.png"  width="300"/>
-
-2) Go through the configuration steps to establish a trust relationship
-
-<img src="./readmeContent/e11.png"  width="300"/>
-
-
-### Enable Trusted Authentication
-
-1) In the same admin page, click on the `default properties` tab and ensure Trusted Authentication is enabled and set to default
-
-<img src="./readmeContent/e12.png"  width="300"/>
-
-### Modify web.xml to leverage SAML authentication
-
-1) Within the MicroStrategy Web Application directory, open the `web.xml` file in `/WEB-INF/`
-
-2) Locate the line beginning with   `<!-- Uncomment fragment below to enable SAML Authentication mode` and uncomment the block
-<img src="./readmeContent/e13.png"  width="300"/>
-
-### Restart Web Server
-
-Restart the webserver to finalize the process. 
-
-You will no longer be able to access pages like the admin or SAML config page without authenticating against SAML. You may re-comment the section in the web.xml to reaccess these pages.
-
-### Map OKTA user to MicroStrategy User
-
-Unless you change the import settings for SAML, the authentication will fail because MicroStrategy will not find a user with a trustID that matches the NameID provided by the SAML assertion. To quickly test this:
-
-1) Open MicroStrategy Developer
-2) Edit a user with web access
-3) Under Authentication > Metadata, ensure that the OKTA user's email is set as the TrustID for a MSTR user (By default, the SAML Assertion will set the NameID as the Okta users email address)
 
 <img src="./readmeContent/e14.png"  width="600"/>
 
