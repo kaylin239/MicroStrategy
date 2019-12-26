@@ -1,6 +1,6 @@
 ## Purpose
 
-The purpose of this sample is to show how leverage OKTA as a SAML SSO provider for MicroStrategy Web
+The purpose of this sample is to show how leverage OKTA as a SAML SSO provider for MicroStrategy Library, where users in MicroStrategy will be dynamically granted access based on OKTA groups passed within the assertion.
 
 <img src="./readmeContent/a17.png"  width="300"/>
 
