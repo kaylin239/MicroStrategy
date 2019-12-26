@@ -2,9 +2,39 @@
 
 The purpose of this sample is to show how leverage OKTA as a SAML SSO provider for MicroStrategy Web
 
-<img src="./readmeContent/e1.png"  width="300"/>
+<img src="./readmeContent/a17.png"  width="300"/>
 
 ## Setup
+
+### Configure MicroStrategy Intelligence Server for Web SSO 
+
+1) Open MicroStrategy Desktop and edit the Intelligence Server configuration
+<img src="./readmeContent/a1.png"  width="300"/>
+
+2) Go to Web Single-Sign-On > Configuration and enable the 3 checkboxes shown in the image below. These settings will allow users who do no currently exist within the MicroStrategy metadata to be created on the fly and have their security updated based on values provided in the SAML assertion.
+<img src="./readmeContent/a2.png"  width="300"/>
+<img src="./readmeContent/a3.png"  width="300"/>
+
+### Create a test user within OKTA
+1) Within the OKTA admin page, go to the users page and create a group and user, and assign this user to the group. In this test case, the group is called 'OktaTest'. In this scenario, the goal is to dynamically create this user in MicroStrategy and apply this user permissions in MicroStrategy defined by the usergroup 'OktaTest'. This group will need to exist in the metadata and have the appropriate permissions assigned ahead of time. 
+<img src="./readmeContent/a4.png"  width="300"/>
+
+### Configure MicroStrategy Library for SAML Authentication
+1) 
+<img src="./readmeContent/a5.png"  width="300"/>
+<img src="./readmeContent/a6.png"  width="300"/>
+<img src="./readmeContent/a7.png"  width="300"/>
+<img src="./readmeContent/a8.png"  width="300"/>
+<img src="./readmeContent/a9.png"  width="300"/>
+<img src="./readmeContent/a10.png"  width="300"/>
+<img src="./readmeContent/a11.png"  width="300"/>
+<img src="./readmeContent/a12.png"  width="300"/>
+<img src="./readmeContent/a13.png"  width="300"/>
+<img src="./readmeContent/a14.png"  width="300"/>
+<img src="./readmeContent/a15.png"  width="300"/>
+<img src="./readmeContent/a16.png"  width="300"/>
+<img src="./readmeContent/a17.png"  width="300"/>
+
 
 ### Generate SAML Config files for MicroStrategy Web
 
